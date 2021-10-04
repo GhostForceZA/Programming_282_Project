@@ -1,0 +1,20 @@
+Login, Signup and Logic (TextFile storage)
+
+Main-Menu (All CRUD)
+	srchStudent
+	showAllStudent
+	srchModule
+	srchAllModule
+	addStudent
+	addModule
+
+Data Form:
+	datagrid
+	allStudentInformation
+	control buttons
+	Update information (not studentID)
+	Delete information
+	
+FilHandler - Jarod (access to data)
+DataHandler - Gustav (formatting/what gets returned)
+Bulk of business logic - Francois
