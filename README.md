@@ -7,5 +7,5 @@
 - Francois Greeff
 - Jarod Kolbe
 
-#task:
-application that lecturers use to keep track of students and their information including name Surname and modules. this application makes use of microsoft SQL server and c#
+### Task Description:
+> Application that lecturers use to keep track of students and their information including name Surname and modules. this application makes use of microsoft SQL server and c#
