@@ -12,10 +12,10 @@ C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\proj
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\bin\Debug\project-prg282.exe
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\bin\Debug\project-prg282.pdb
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project-prg282.csproj.AssemblyReference.cache
-C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project_prg282.FormLogin.resources
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project_prg282.PresentationLayer.FrmSignUp.resources
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project_prg282.Properties.Resources.resources
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project-prg282.csproj.GenerateResource.cache
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project-prg282.csproj.CoreCompileInputs.cache
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project-prg282.exe
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project-prg282.pdb
+C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project_prg282.FrmLogin.resources

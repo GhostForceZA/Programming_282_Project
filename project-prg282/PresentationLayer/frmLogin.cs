@@ -12,13 +12,20 @@ using project_prg282.PresentationLayer;
 
 namespace project_prg282
 {
-    public partial class FormLogin : Form
+    public partial class FrmLogin : Form
     {
         Point lastPoint;
-        public FormLogin()
+        static FrmLogin instance;
+
+        public static FrmLogin Instance { get => instance; set => instance = value; }
+
+        public FrmLogin()
         {
             InitializeComponent();
+            Instance = this;
         }
+
+
         //Mouse movement code taken from https://www.youtube.com/watch?v=KTTkDhuPV_c&ab_channel=TeckDoctor
         private void FormLogin_MouseMove(object sender, MouseEventArgs e)
         {
@@ -52,7 +59,7 @@ namespace project_prg282
                 {
                     //throw the custom exception
                 }
-                if(!re.IsMatch(username)) 
+                if(!re.IsMatch(username)) //means that it contains a character that is not part of this string
                 {
                     //throw custom exception for irregular characters 
                 }
