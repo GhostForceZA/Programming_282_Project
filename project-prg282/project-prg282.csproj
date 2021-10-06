@@ -58,7 +58,7 @@
     <Compile Include="PresentationLayer\frmSignUp.Designer.cs">
       <DependentUpon>frmSignUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\LoginException.cs" />
+    <Compile Include="PresentationLayer\InputException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\frmLogin.resx">

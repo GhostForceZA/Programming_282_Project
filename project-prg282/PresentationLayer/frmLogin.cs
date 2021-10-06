@@ -57,11 +57,11 @@ namespace project_prg282
                 Regex re = new Regex(@"^[a-zA-Z0-9_-]*$"); //allowable characters for a username
                 if (username.Length == 0 || password.Length == 0)
                 {
-                    throw new LoginException("I think you forgot to enter your Username or password, or both, I don't have my glasses, so please try again");
+                    throw new InputException("You cannot have an empty field");
                 }
                 if(!re.IsMatch(username)) //means that it contains a character that is not part of this string
                 {
-                    throw new LoginException("I don't understand your Username, please use normal characters so my brain won't hurt");
+                    throw new InputException("Username does not contain special characters");
                 }
                 else
                 {
@@ -72,11 +72,10 @@ namespace project_prg282
                     //}else{
                     //  //throw exception
                     //}
-                    MessageBox.Show("WE DID IT BOIIS");
                 }
 
             }
-            catch(LoginException err)//create custom exceptions for this
+            catch(InputException err)//create custom exceptions for this
             {
                 MessageBox.Show(err.Message, "Invalid Entry", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
