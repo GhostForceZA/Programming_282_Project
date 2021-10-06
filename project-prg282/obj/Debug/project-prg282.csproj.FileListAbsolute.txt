@@ -8,3 +8,13 @@ C:\Users\artur\Source\Repos\Programming_282_Project\project-prg282\obj\Debug\pro
 C:\Users\artur\Source\Repos\Programming_282_Project\project-prg282\obj\Debug\project-prg282.exe
 C:\Users\artur\Source\Repos\Programming_282_Project\project-prg282\obj\Debug\project-prg282.pdb
 C:\Users\artur\Source\Repos\Programming_282_Project\project-prg282\obj\Debug\project_prg282.formLogin.resources
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\bin\Debug\project-prg282.exe.config
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\bin\Debug\project-prg282.exe
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\bin\Debug\project-prg282.pdb
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\obj\Debug\project-prg282.csproj.AssemblyReference.cache
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\obj\Debug\project_prg282.FormLogin.resources
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\obj\Debug\project_prg282.Properties.Resources.resources
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\obj\Debug\project-prg282.csproj.GenerateResource.cache
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\obj\Debug\project-prg282.csproj.CoreCompileInputs.cache
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\obj\Debug\project-prg282.exe
+C:\Users\francois\Documents\subjects\PRG\Year_2\282\PROJECT\Application\project-prg282\obj\Debug\project-prg282.pdb
