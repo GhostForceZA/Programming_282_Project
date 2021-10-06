@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\project-prg282"
+    "\\project-prg282",
+    "\\project-prg282\\PresentationLayer"
   ],
+<<<<<<< Updated upstream
   "SelectedNode": "\\project-prg282\\Form1.cs",
+=======
+  "SelectedNode": "\\project-prg282\\PresentationLayer\\Form1.Designer.cs",
+>>>>>>> Stashed changes
   "PreviewInSolutionExplorer": false
 }
