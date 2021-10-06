@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using project_prg282.PresentationLayer;
 
 namespace project_prg282
 {
@@ -46,14 +47,14 @@ namespace project_prg282
             {
                 string username = txtUsername.Text;
                 string password = txtPassword.Text;
-                Regex re = new Regex(@"^[a - zA - Z0 - 9_.-] *$"); //allowable characters for a username
+                Regex re = new Regex(@"^[a-zA-Z0-9_-]*$"); //allowable characters for a username
                 if (username.Length == 0 || password.Length == 0)
                 {
                     //throw the custom exception
                 }
-                else if(!re.IsMatch(username)) 
+                if(!re.IsMatch(username)) 
                 {
-                    //throw custom exception for irregular characters entered
+                    //throw custom exception for irregular characters 
                 }
                 else
                 {
@@ -64,6 +65,7 @@ namespace project_prg282
                     //}else{
                     //  //throw exception
                     //}
+                    MessageBox.Show("WE DID IT BOIIS");
                 }
 
             }
@@ -77,6 +79,9 @@ namespace project_prg282
         private void BtnSignUp_Click(object sender, EventArgs e)
         {
             //open the signup form and close this one
+            FrmSignUp signUp = new FrmSignUp();
+            signUp.Show();
+            this.Hide();
         }
     }
 
