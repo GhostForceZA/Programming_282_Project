@@ -58,14 +58,14 @@
     <Compile Include="PresentationLayer\frmSignUp.Designer.cs">
       <DependentUpon>frmSignUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\iDefineUser.cs" />
-    <Compile Include="PresentationLayer\Person.cs" />
-    <Compile Include="PresentationLayer\Student.cs" />
-    <Compile Include="PresentationLayer\User.cs" />
+    <Compile Include="PresentationLayer\InputException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\frmSignUp.resx">
+      <DependentUpon>frmSignUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
