@@ -42,6 +42,7 @@ namespace project_prg282.PresentationLayer
             this.panel6 = new System.Windows.Forms.Panel();
             this.lvDetails = new System.Windows.Forms.ListView();
             this.pnlInput = new System.Windows.Forms.Panel();
+            this.cbGender = new System.Windows.Forms.ComboBox();
             this.dtDOB = new System.Windows.Forms.DateTimePicker();
             this.btnClearModule = new System.Windows.Forms.Button();
             this.btnAddMod = new System.Windows.Forms.Button();
@@ -59,13 +60,12 @@ namespace project_prg282.PresentationLayer
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbProfile = new System.Windows.Forms.PictureBox();
             this.btnUpload = new System.Windows.Forms.Button();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnExitApp = new System.Windows.Forms.Button();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
-            this.cbGender = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -73,7 +73,7 @@ namespace project_prg282.PresentationLayer
             this.panel6.SuspendLayout();
             this.pnlInput.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -209,6 +209,7 @@ namespace project_prg282.PresentationLayer
             // 
             this.lvDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.lvDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvDetails.ForeColor = System.Drawing.Color.White;
             this.lvDetails.FullRowSelect = true;
             this.lvDetails.HideSelection = false;
             this.lvDetails.Location = new System.Drawing.Point(3, 3);
@@ -217,6 +218,7 @@ namespace project_prg282.PresentationLayer
             this.lvDetails.TabIndex = 0;
             this.lvDetails.UseCompatibleStateImageBehavior = false;
             this.lvDetails.View = System.Windows.Forms.View.Details;
+            this.lvDetails.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvDetails_MouseClick);
             // 
             // pnlInput
             // 
@@ -243,6 +245,23 @@ namespace project_prg282.PresentationLayer
             this.pnlInput.Name = "pnlInput";
             this.pnlInput.Size = new System.Drawing.Size(469, 215);
             this.pnlInput.TabIndex = 2;
+            // 
+            // cbGender
+            // 
+            this.cbGender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbGender.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGender.ForeColor = System.Drawing.Color.White;
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Other"});
+            this.cbGender.Location = new System.Drawing.Point(181, 68);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(121, 28);
+            this.cbGender.TabIndex = 23;
             // 
             // dtDOB
             // 
@@ -300,7 +319,7 @@ namespace project_prg282.PresentationLayer
             this.rtbAddress.ForeColor = System.Drawing.Color.White;
             this.rtbAddress.Location = new System.Drawing.Point(16, 67);
             this.rtbAddress.Name = "rtbAddress";
-            this.rtbAddress.Size = new System.Drawing.Size(121, 40);
+            this.rtbAddress.Size = new System.Drawing.Size(121, 50);
             this.rtbAddress.TabIndex = 21;
             this.rtbAddress.Text = "";
             // 
@@ -446,7 +465,7 @@ namespace project_prg282.PresentationLayer
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.Controls.Add(this.pictureBox1);
+            this.panel4.Controls.Add(this.pbProfile);
             this.panel4.Controls.Add(this.btnUpload);
             this.panel4.Controls.Add(this.txtID);
             this.panel4.Controls.Add(this.label2);
@@ -456,15 +475,15 @@ namespace project_prg282.PresentationLayer
             this.panel4.Size = new System.Drawing.Size(119, 169);
             this.panel4.TabIndex = 1;
             // 
-            // pictureBox1
+            // pbProfile
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(0, 28);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(116, 109);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
+            this.pbProfile.Location = new System.Drawing.Point(0, 28);
+            this.pbProfile.Margin = new System.Windows.Forms.Padding(0);
+            this.pbProfile.Name = "pbProfile";
+            this.pbProfile.Size = new System.Drawing.Size(116, 109);
+            this.pbProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbProfile.TabIndex = 19;
+            this.pbProfile.TabStop = false;
             // 
             // btnUpload
             // 
@@ -524,23 +543,6 @@ namespace project_prg282.PresentationLayer
             // 
             this.openFileDialogImage.FileName = "openFileDialog1";
             // 
-            // cbGender
-            // 
-            this.cbGender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbGender.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbGender.ForeColor = System.Drawing.Color.White;
-            this.cbGender.FormattingEnabled = true;
-            this.cbGender.Items.AddRange(new object[] {
-            "Male",
-            "Female",
-            "Other"});
-            this.cbGender.Location = new System.Drawing.Point(181, 68);
-            this.cbGender.Name = "cbGender";
-            this.cbGender.Size = new System.Drawing.Size(121, 28);
-            this.cbGender.TabIndex = 23;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,7 +569,7 @@ namespace project_prg282.PresentationLayer
             this.pnlInput.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfile)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -602,7 +604,7 @@ namespace project_prg282.PresentationLayer
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Button btnExitApp;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbProfile;
         private System.Windows.Forms.OpenFileDialog openFileDialogImage;
         private System.Windows.Forms.RichTextBox rtbAddress;
         private System.Windows.Forms.Button btnAddMod;

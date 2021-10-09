@@ -49,6 +49,7 @@ namespace project_prg282.PresentationLayer
             {
                 cbModules.Items.Add(mod);
             }
+            addToListView();
         }
         //create movable app
         private void FrmMain_MouseDown(object sender, MouseEventArgs e)
@@ -71,7 +72,7 @@ namespace project_prg282.PresentationLayer
             {
                 string filePath = openFileDialogImage.FileName; //image for the user to upload
                 Bitmap img = new Bitmap(filePath);
-                pictureBox1.Image = img;                
+                pbProfile.Image = img;                
                 //take file path and process in business logic so we dont use a ton of memory using image data when parsing
             }
         }
@@ -170,12 +171,45 @@ namespace project_prg282.PresentationLayer
             try
             {
                 int id = int.Parse(txtID.Text);
+                //searchUser(id); --return the persons data, either as a person object or a formattable string
+                //assign to textboxes
                 
             }
             catch (FormatException)
             {
                 MessageBox.Show("Only valid characters to be entered");
             }
+        }
+
+        private void addToListView()
+        {
+            //getUsers() --Return a dataTable
+            //need to ensure column names are correct
+            //foreach(DataRow row in getUsers().Rows)
+            //{
+            //    ListViewItem item = new ListViewItem(row["id"].ToString());
+            //    item.SubItems.Add(row["Name"].ToString());
+            //    item.SubItems.Add(row["Surname"].ToString());
+            //    item.SubItems.Add(row["DOB"].ToString());
+            //    item.SubItems.Add(row["Gender"].ToString());
+            //    item.SubItems.Add(row["Phone"].ToString());
+            //    item.SubItems.Add(row["Address"].ToString());
+            //    item.SubItems.Add(row["Modules"].ToString());
+            //    item.SubItems.Add(row["profilePhoto"].ToString());
+
+            //}
+        }
+
+        private void lvDetails_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtID.Text = lvDetails.SelectedItems[0].SubItems[0].Text;
+            txtName.Text = lvDetails.SelectedItems[0].SubItems[1].Text;
+            txtSurname.Text = lvDetails.SelectedItems[0].SubItems[2].Text;
+            dtDOB.Text = lvDetails.SelectedItems[0].SubItems[3].Text; //Year/Month/Day
+            cbGender.Text = lvDetails.SelectedItems[0].SubItems[4].Text;
+            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
+            rtbModules.Text = lvDetails.SelectedItems[0].SubItems[6].Text;
+           // pbProfile.Image = lvDetails.SelectedItems[0].SubItems[7].Text;//convert to an image
         }
     }
 }
