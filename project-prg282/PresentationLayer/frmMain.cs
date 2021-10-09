@@ -44,6 +44,7 @@ namespace project_prg282.PresentationLayer
         {
             //filter string from https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.filedialog.filter?view=windowsdesktop-5.0
             openFileDialogImage.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
+            dtDOB.MaxDate = DateTime.Now;
             foreach (string mod in modules)
             {
                 cbModules.Items.Add(mod);
@@ -110,22 +111,71 @@ namespace project_prg282.PresentationLayer
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
+            //get all inputs
+            try
+            {
+                int id = int.Parse(txtID.Text);
+                string name = txtName.Text;
+                string surname = txtSurname.Text;
+                DateTime dob = dtDOB.Value;
+                string address = rtbAddress.Text;
+                string gender = cbGender.SelectedItem.ToString();
+                string[] modules = rtbModules.Text.Split(','); //array of modules to add
+                //updateUser(id, name, surname, etc.)//ids may be INDENTITY()
 
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Only valid characters to be entered");
+            }
+            
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int id = int.Parse(txtID.Text);
+                string name = txtName.Text;
+                string surname = txtSurname.Text;
+                DateTime dob = dtDOB.Value;
+                string address = rtbAddress.Text;
+                string gender = cbGender.SelectedItem.ToString();
+                string[] modules = rtbModules.Text.Split(','); //array of modules to add
 
+                //registerUser(id, name, surname, etc.)//ids may be INDENTITY()
+
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Only valid characters to be entered");
+            }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int id = int.Parse(txtID.Text);
+                //deleteUser(id)
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Only valid characters to be entered");
+            }
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int id = int.Parse(txtID.Text);
+                
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Only valid characters to be entered");
+            }
         }
     }
 }
