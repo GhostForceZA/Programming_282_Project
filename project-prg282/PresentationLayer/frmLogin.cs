@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using project_prg282.PresentationLayer;
+using project_prg282.BusinessLogicLayer;
 
 namespace project_prg282
 {
@@ -50,6 +51,10 @@ namespace project_prg282
             //validate input, then push to business logic, returns true or false
             //if true close and open next one
 
+           
+
+            
+
             try
             {
                 string username = txtUsername.Text;
@@ -65,17 +70,23 @@ namespace project_prg282
                 }
                 else
                 {
-                    //call business logic operations to check if this exists in the database
-                    //if(userExists(username, password))
-                    //{
-                    //    //open the next form
-                    //}else{
-                    //  //throw exception
-                    //}
+                    User user = new User();
+                    if(user.UserExists(username, password))
+                    {
+                        //main form
+                    }
+                    else
+                    {
+                        throw new UserNotFoundException("UserName or Password is incorrect");
+                    }
                 }
 
             }
             catch(InputException err)//create custom exceptions for this
+            {
+                MessageBox.Show(err.Message, "Invalid Entry", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+            }
+            catch(UserNotFoundException err)
             {
                 MessageBox.Show(err.Message, "Invalid Entry", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }

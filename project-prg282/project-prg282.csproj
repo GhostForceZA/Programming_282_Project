@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogicLayer\iDefineUser.cs" />
+    <Compile Include="BusinessLogicLayer\Person.cs" />
+    <Compile Include="BusinessLogicLayer\Student.cs" />
+    <Compile Include="BusinessLogicLayer\User.cs" />
+    <Compile Include="DataAccessLayer\DataHandler.cs" />
+    <Compile Include="DataAccessLayer\iDataReturnal.cs" />
     <Compile Include="PresentationLayer\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,7 @@
       <DependentUpon>frmSignUp.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayer\InputException.cs" />
+    <Compile Include="PresentationLayer\UserNotFoundException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayer\frmLogin.resx">
@@ -90,10 +97,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BusinessLogicLayer\" />
-    <Folder Include="DataLayer\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="PresentationLayer\images\UserProfile_16x.png" />
     <None Include="Resources\UserProfile_16x.png" />
