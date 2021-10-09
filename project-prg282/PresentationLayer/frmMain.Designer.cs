@@ -31,6 +31,7 @@ namespace project_prg282.PresentationLayer
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.BtnSearch = new System.Windows.Forms.Button();
@@ -41,13 +42,11 @@ namespace project_prg282.PresentationLayer
             this.panel6 = new System.Windows.Forms.Panel();
             this.lvDetails = new System.Windows.Forms.ListView();
             this.pnlInput = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.dtDOB = new System.Windows.Forms.DateTimePicker();
+            this.btnClearModule = new System.Windows.Forms.Button();
+            this.btnAddMod = new System.Windows.Forms.Button();
+            this.rtbAddress = new System.Windows.Forms.RichTextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.txtSurname = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.rtbModules = new System.Windows.Forms.RichTextBox();
@@ -66,18 +65,15 @@ namespace project_prg282.PresentationLayer
             this.label2 = new System.Windows.Forms.Label();
             this.btnExitApp = new System.Windows.Forms.Button();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btnAddMod = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnClearModule = new System.Windows.Forms.Button();
+            this.cbGender = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
             this.pnlInput.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,6 +86,17 @@ namespace project_prg282.PresentationLayer
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(180, 159);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(15, 37);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(150, 112);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
             // 
             // label1
             // 
@@ -214,16 +221,12 @@ namespace project_prg282.PresentationLayer
             // pnlInput
             // 
             this.pnlInput.BackColor = System.Drawing.Color.Transparent;
+            this.pnlInput.Controls.Add(this.cbGender);
+            this.pnlInput.Controls.Add(this.dtDOB);
             this.pnlInput.Controls.Add(this.btnClearModule);
             this.pnlInput.Controls.Add(this.btnAddMod);
-            this.pnlInput.Controls.Add(this.richTextBox1);
-            this.pnlInput.Controls.Add(this.label8);
-            this.pnlInput.Controls.Add(this.label6);
-            this.pnlInput.Controls.Add(this.textBox2);
-            this.pnlInput.Controls.Add(this.textBox1);
-            this.pnlInput.Controls.Add(this.textBox6);
+            this.pnlInput.Controls.Add(this.rtbAddress);
             this.pnlInput.Controls.Add(this.txtPhone);
-            this.pnlInput.Controls.Add(this.textBox3);
             this.pnlInput.Controls.Add(this.txtSurname);
             this.pnlInput.Controls.Add(this.txtName);
             this.pnlInput.Controls.Add(this.rtbModules);
@@ -241,63 +244,65 @@ namespace project_prg282.PresentationLayer
             this.pnlInput.Size = new System.Drawing.Size(469, 215);
             this.pnlInput.TabIndex = 2;
             // 
-            // label8
+            // dtDOB
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(253, 75);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(16, 20);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "/";
+            this.dtDOB.CalendarForeColor = System.Drawing.Color.White;
+            this.dtDOB.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.dtDOB.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.dtDOB.CalendarTitleForeColor = System.Drawing.Color.White;
+            this.dtDOB.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDOB.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtDOB.Location = new System.Drawing.Point(342, 69);
+            this.dtDOB.MaxDate = new System.DateTime(2021, 12, 31, 0, 0, 0, 0);
+            this.dtDOB.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtDOB.Name = "dtDOB";
+            this.dtDOB.Size = new System.Drawing.Size(109, 23);
+            this.dtDOB.TabIndex = 1;
+            this.dtDOB.Value = new System.DateTime(2001, 12, 31, 0, 0, 0, 0);
             // 
-            // label6
+            // btnClearModule
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(208, 75);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(16, 20);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "/";
+            this.btnClearModule.FlatAppearance.BorderSize = 0;
+            this.btnClearModule.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnClearModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearModule.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearModule.ForeColor = System.Drawing.Color.White;
+            this.btnClearModule.Location = new System.Drawing.Point(72, 172);
+            this.btnClearModule.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClearModule.Name = "btnClearModule";
+            this.btnClearModule.Size = new System.Drawing.Size(65, 32);
+            this.btnClearModule.TabIndex = 22;
+            this.btnClearModule.Text = "Clear";
+            this.btnClearModule.UseVisualStyleBackColor = true;
+            this.btnClearModule.Click += new System.EventHandler(this.btnClearModule_Click);
             // 
-            // textBox2
+            // btnAddMod
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.White;
-            this.textBox2.Location = new System.Drawing.Point(225, 75);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(25, 20);
-            this.textBox2.TabIndex = 18;
+            this.btnAddMod.FlatAppearance.BorderSize = 0;
+            this.btnAddMod.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddMod.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMod.ForeColor = System.Drawing.Color.White;
+            this.btnAddMod.Location = new System.Drawing.Point(16, 172);
+            this.btnAddMod.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddMod.Name = "btnAddMod";
+            this.btnAddMod.Size = new System.Drawing.Size(56, 32);
+            this.btnAddMod.TabIndex = 20;
+            this.btnAddMod.Text = "Add";
+            this.btnAddMod.UseVisualStyleBackColor = true;
+            this.btnAddMod.Click += new System.EventHandler(this.btnAddMod_Click);
             // 
-            // textBox1
+            // rtbAddress
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.White;
-            this.textBox1.Location = new System.Drawing.Point(269, 75);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(25, 20);
-            this.textBox1.TabIndex = 17;
-            // 
-            // textBox6
-            // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.ForeColor = System.Drawing.Color.White;
-            this.textBox6.Location = new System.Drawing.Point(346, 75);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 16;
+            this.rtbAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.rtbAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rtbAddress.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbAddress.ForeColor = System.Drawing.Color.White;
+            this.rtbAddress.Location = new System.Drawing.Point(16, 67);
+            this.rtbAddress.Name = "rtbAddress";
+            this.rtbAddress.Size = new System.Drawing.Size(121, 40);
+            this.rtbAddress.TabIndex = 21;
+            this.rtbAddress.Text = "";
             // 
             // txtPhone
             // 
@@ -305,23 +310,11 @@ namespace project_prg282.PresentationLayer
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPhone.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.ForeColor = System.Drawing.Color.White;
-            this.txtPhone.Location = new System.Drawing.Point(346, 22);
+            this.txtPhone.Location = new System.Drawing.Point(346, 23);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(0);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(100, 20);
             this.txtPhone.TabIndex = 15;
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.Color.White;
-            this.textBox3.Location = new System.Drawing.Point(184, 75);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(25, 20);
-            this.textBox3.TabIndex = 13;
             // 
             // txtSurname
             // 
@@ -329,7 +322,7 @@ namespace project_prg282.PresentationLayer
             this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSurname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSurname.ForeColor = System.Drawing.Color.White;
-            this.txtSurname.Location = new System.Drawing.Point(188, 22);
+            this.txtSurname.Location = new System.Drawing.Point(191, 23);
             this.txtSurname.Margin = new System.Windows.Forms.Padding(0);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(100, 20);
@@ -341,7 +334,7 @@ namespace project_prg282.PresentationLayer
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.ForeColor = System.Drawing.Color.White;
-            this.txtName.Location = new System.Drawing.Point(16, 22);
+            this.txtName.Location = new System.Drawing.Point(16, 23);
             this.txtName.Margin = new System.Windows.Forms.Padding(0);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(121, 20);
@@ -389,7 +382,7 @@ namespace project_prg282.PresentationLayer
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(357, 52);
+            this.label10.Location = new System.Drawing.Point(207, 47);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 20);
             this.label10.TabIndex = 7;
@@ -411,7 +404,7 @@ namespace project_prg282.PresentationLayer
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(216, 52);
+            this.label7.Location = new System.Drawing.Point(367, 46);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 20);
             this.label7.TabIndex = 5;
@@ -422,7 +415,7 @@ namespace project_prg282.PresentationLayer
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(45, 52);
+            this.label5.Location = new System.Drawing.Point(45, 46);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 20);
             this.label5.TabIndex = 4;
@@ -433,7 +426,7 @@ namespace project_prg282.PresentationLayer
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(203, 2);
+            this.label4.Location = new System.Drawing.Point(206, 3);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 20);
             this.label4.TabIndex = 3;
@@ -495,7 +488,7 @@ namespace project_prg282.PresentationLayer
             this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtID.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtID.ForeColor = System.Drawing.Color.White;
-            this.txtID.Location = new System.Drawing.Point(40, 2);
+            this.txtID.Location = new System.Drawing.Point(40, 1);
             this.txtID.Margin = new System.Windows.Forms.Padding(0);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(76, 20);
@@ -531,59 +524,22 @@ namespace project_prg282.PresentationLayer
             // 
             this.openFileDialogImage.FileName = "openFileDialog1";
             // 
-            // richTextBox1
+            // cbGender
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(16, 75);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(121, 40);
-            this.richTextBox1.TabIndex = 21;
-            this.richTextBox1.Text = "";
-            // 
-            // btnAddMod
-            // 
-            this.btnAddMod.FlatAppearance.BorderSize = 0;
-            this.btnAddMod.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btnAddMod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddMod.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddMod.ForeColor = System.Drawing.Color.White;
-            this.btnAddMod.Location = new System.Drawing.Point(16, 172);
-            this.btnAddMod.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddMod.Name = "btnAddMod";
-            this.btnAddMod.Size = new System.Drawing.Size(56, 32);
-            this.btnAddMod.TabIndex = 20;
-            this.btnAddMod.Text = "Add";
-            this.btnAddMod.UseVisualStyleBackColor = true;
-            this.btnAddMod.Click += new System.EventHandler(this.btnAddMod_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(15, 37);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(150, 112);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 20;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnClearModule
-            // 
-            this.btnClearModule.FlatAppearance.BorderSize = 0;
-            this.btnClearModule.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btnClearModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearModule.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearModule.ForeColor = System.Drawing.Color.White;
-            this.btnClearModule.Location = new System.Drawing.Point(72, 172);
-            this.btnClearModule.Margin = new System.Windows.Forms.Padding(0);
-            this.btnClearModule.Name = "btnClearModule";
-            this.btnClearModule.Size = new System.Drawing.Size(65, 32);
-            this.btnClearModule.TabIndex = 22;
-            this.btnClearModule.Text = "Clear";
-            this.btnClearModule.UseVisualStyleBackColor = true;
-            this.btnClearModule.Click += new System.EventHandler(this.btnClearModule_Click);
+            this.cbGender.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.cbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbGender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbGender.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGender.ForeColor = System.Drawing.Color.White;
+            this.cbGender.FormattingEnabled = true;
+            this.cbGender.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Other"});
+            this.cbGender.Location = new System.Drawing.Point(181, 68);
+            this.cbGender.Name = "cbGender";
+            this.cbGender.Size = new System.Drawing.Size(121, 28);
+            this.cbGender.TabIndex = 23;
             // 
             // FrmMain
             // 
@@ -603,6 +559,7 @@ namespace project_prg282.PresentationLayer
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseMove);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
@@ -611,7 +568,6 @@ namespace project_prg282.PresentationLayer
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -642,21 +598,17 @@ namespace project_prg282.PresentationLayer
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.ListView lvDetails;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Button btnExitApp;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.OpenFileDialog openFileDialogImage;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox rtbAddress;
         private System.Windows.Forms.Button btnAddMod;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnClearModule;
+        private System.Windows.Forms.DateTimePicker dtDOB;
+        private System.Windows.Forms.ComboBox cbGender;
     }
 }
