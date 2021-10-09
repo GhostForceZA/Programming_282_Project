@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileHandler.cs" />
+    <Compile Include="IDatabaseControl.cs" />
+    <Compile Include="IFileControl.cs" />
     <Compile Include="PresentationLayer\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
