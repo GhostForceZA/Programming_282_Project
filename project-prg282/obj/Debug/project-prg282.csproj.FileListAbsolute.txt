@@ -19,3 +19,4 @@ C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\proj
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project-prg282.exe
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project-prg282.pdb
 C:\Users\artur\Source\Repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project_prg282.FrmLogin.resources
+C:\Users\artur\source\repos\Programming_282_Project\Programming_282_Project\project-prg282\obj\Debug\project_prg282.PresentationLayer.FrmMain.resources

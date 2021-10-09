@@ -72,6 +72,9 @@ namespace project_prg282
                     //}else{
                     //  //throw exception
                     //}
+                    FrmMain main = new FrmMain();
+                    main.Show();
+                    this.Hide();
                 }
 
             }
