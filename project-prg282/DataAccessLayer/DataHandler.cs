@@ -34,13 +34,27 @@ namespace project_prg282.DataAccessLayer
             //waiting on FH for request
         }
 
-        public DataTable getStudents(string Username)
+        //CRUD - CREATE READ UPDATE DELETE
+
+        //CREATE - Adding a new student in the database
+        public void addStudent(string Name, string Surn, DateTime DOB, string Gender, string Phone, string Address)
         {
-            //add queries
+            DatabaseCon.Open();
 
-            string Qry = "SELECT * FROM table_name WHERE Username = " + Username;
+            string InsertQry = "INSERT INTO Student (Name, Surname, DOB, Gender, Phone, Address) VALUES ("  + Name + ", " + Surn + ", " + DOB + ", " + Gender + ", " + Phone + ", " + Address + ")";
 
-            SqlDataAdapter Adap = new SqlDataAdapter(Qry, DatabaseCon);
+            SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
+            Com.ExecuteNonQuery();
+
+            DatabaseCon.Close();
+        }
+
+        //
+        public DataTable getStudents(string Name)
+        {
+            string Search = "SELECT * FROM Student WHERE Name = " + Name;
+
+            SqlDataAdapter Adap = new SqlDataAdapter(Search, DatabaseCon);
 
             DataTable DataT = new DataTable();
             Adap.Fill(DataT);
@@ -48,8 +62,35 @@ namespace project_prg282.DataAccessLayer
             return DataT;
         }
 
-        //public SqlDataReader get
-        
+        public void UpdateStudent(int ID, string NName, string NSur, DateTime NDOB, string NGender, string NPhone, string NAddress)
+        {
+            DatabaseCon.Open();
 
+            string UpdateQry = "UPDATE Student SET Name = " + NName +
+                " , Surname = " + NSur +
+                " , DOB = " + NDOB +
+                " , Gender = " + NGender +
+                " , Phone = " + NPhone +
+                " , Address = " + NAddress +
+                " WHERE StudentNumber = " + ID;
+
+            SqlCommand UpdateCom = new SqlCommand(UpdateQry, DatabaseCon);
+            UpdateCom.ExecuteNonQuery();
+
+            DatabaseCon.Close();
+        }
+
+        public void DeleteStudent(int ID)
+        {
+            DatabaseCon.Open();
+
+            string DeleteQry = "DELETE FROM Student WHERE StudentNumber = " + ID;
+
+            SqlCommand DeleteCom = new SqlCommand();
+
+            DeleteCom.CommandText = DeleteQry;
+
+            DatabaseCon.Close();
+        }
     }
 }
