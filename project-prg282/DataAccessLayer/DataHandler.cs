@@ -36,7 +36,7 @@ namespace project_prg282.DataAccessLayer
 
         //CRUD - CREATE READ UPDATE DELETE
 
-        //CREATE - Adding a new student in the database
+        //CREATE - Adding a new student to the database
         public void addStudent(string Name, string Surn, DateTime DOB, string Gender, string Phone, string Address)
         {
             DatabaseCon.Open();
@@ -49,7 +49,24 @@ namespace project_prg282.DataAccessLayer
             DatabaseCon.Close();
         }
 
-        //
+        //CREATE - Adding a new student to the database, but with a stored procedure
+        public void addStudentPROC(string Name, string Surn, DateTime DOB, string Gender, string Phone, string Address)
+        {
+            SqlCommand cmd = new SqlCommand("spDeleteStudent", DatabaseCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", Name);
+            cmd.Parameters.AddWithValue("@Id", Surn);
+            cmd.Parameters.AddWithValue("@Id", DOB);
+            cmd.Parameters.AddWithValue("@Id", Gender);
+            cmd.Parameters.AddWithValue("@Id", Phone);
+            cmd.Parameters.AddWithValue("@Id", Address);
+
+            DatabaseCon.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+        //READ - Search for a specific student
         public DataTable getStudents(string Name)
         {
             string Search = "SELECT * FROM Student WHERE Name = " + Name;
@@ -62,7 +79,25 @@ namespace project_prg282.DataAccessLayer
             return DataT;
         }
 
-        public void UpdateStudent(int ID, string NName, string NSur, DateTime NDOB, string NGender, string NPhone, string NAddress)
+        //READ - Search for a specific student, but with a stored procedure
+        public DataTable getStudentPROC(string ID)
+        {
+            SqlCommand cmd = new SqlCommand("SearchStudent", DatabaseCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@Id", ID);
+
+            DatabaseCon.Open();
+            DataTable DT = new DataTable();
+
+            using (SqlDataReader DR = cmd.ExecuteReader())
+            {
+                DT.Load(DR);
+                return DT;
+            }
+        }
+
+        //UPDATE - Updating an existing student
+        public void UpdateStudent(string ID, string NName, string NSur, DateTime NDOB, string NGender, string NPhone, string NAddress)
         {
             DatabaseCon.Open();
 
@@ -80,7 +115,26 @@ namespace project_prg282.DataAccessLayer
             DatabaseCon.Close();
         }
 
-        public void DeleteStudent(int ID)
+        //UPDATE - Updating an existing student, but with a stored procedure
+        public void UpdateStudentPROC(string ID, string NName, string NSur, DateTime NDOB, string NGender, string NPhone, string NAddress)
+        {
+            SqlCommand cmd = new SqlCommand("spUpdateStudent", DatabaseCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", ID);
+            cmd.Parameters.AddWithValue("@Id", NName);
+            cmd.Parameters.AddWithValue("@Id", NSur);
+            cmd.Parameters.AddWithValue("@Id", NDOB);
+            cmd.Parameters.AddWithValue("@Id", NGender);
+            cmd.Parameters.AddWithValue("@Id", NPhone);
+            cmd.Parameters.AddWithValue("@Id", NAddress);
+
+            DatabaseCon.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+        //DELETE - Delete a student from the database
+        public void DeleteStudent(string ID)
         {
             DatabaseCon.Open();
 
@@ -91,6 +145,18 @@ namespace project_prg282.DataAccessLayer
             DeleteCom.CommandText = DeleteQry;
 
             DatabaseCon.Close();
+        }
+
+        //DELETE - Delete a student from the database, but with a stored procedure
+        public void DeleteStudentPROC(string ID)
+        {
+            SqlCommand cmd = new SqlCommand("spDeleteStudent", DatabaseCon);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@Id", ID);
+
+            DatabaseCon.Open();
+            cmd.ExecuteNonQuery();
         }
     }
 }
