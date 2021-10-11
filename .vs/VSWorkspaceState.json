@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\project-prg282",
+    "\\project-prg282\\DataAccessLayer",
     "\\project-prg282\\PresentationLayer"
   ],
-  "SelectedNode": "\\project-prg282\\project-prg282.sln",
+  "SelectedNode": "\\project-prg282\\PresentationLayer\\frmLogin.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -36,16 +36,16 @@ namespace project_prg282.BusinessLogicLayer
         {
             bool found = false;
 
-            foreach (User userCycle in dh.getUsers())
-            {
-                if(userCycle.Username == Username)
-                {
-                    if(userCycle.Password == password)
-                    {
+       //     foreach (User userCycle in dh.getUsers())
+         //   {
+             //   if(userCycle.Username == Username)
+              //  {
+             //       if(userCycle.Password == password)
+              //      {
                         found = true;
-                    }
-                }
-            }
+              //     }
+             //  }
+            //}
 
 
             return found;
