@@ -15,9 +15,6 @@ namespace project_prg282.DataAccessLayer
     {
         SqlConnection DatabaseCon = new SqlConnection("Server=(Local); Initial Catalog=StudentInfo; Integrated Security=SSPI");
 
-        //Filehandler fh;
-        
-
         //CRUD - CREATE READ UPDATE DELETE
 
         //CREATE - Adding a new student to the database
@@ -25,7 +22,7 @@ namespace project_prg282.DataAccessLayer
         {
             DatabaseCon.Open();
 
-            string InsertQry = "INSERT INTO Student (Name, Surname, DOB, Gender, Phone, Address) VALUES ("  + Name + ", " + Surn + ", " + DOB + ", " + Gender + ", " + Phone + ", " + Address + ")";
+            string InsertQry = $"INSERT INTO Student (Name, Surname, DOB, Gender, Phone, Address) VALUES ('{Name}','{Surn}','{DOB}','{Gender}',{Phone},'{Address}')";
 
             SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
             Com.ExecuteNonQuery();
@@ -85,13 +82,9 @@ namespace project_prg282.DataAccessLayer
         {
             DatabaseCon.Open();
 
-            string UpdateQry = "UPDATE Student SET Name = " + NName +
-                " , Surname = " + NSur +
-                " , DOB = " + NDOB +
-                " , Gender = " + NGender +
-                " , Phone = " + NPhone +
-                " , Address = " + NAddress +
-                " WHERE StudentNumber = " + ID;
+            string UpdateQry = $"UPDATE Student SET Name = {NName}, Surname = {NSur}, DOB = {NDOB}, " +
+                $"Gender = {NGender}, Phone = {NPhone} , Address ={NAddress} " +
+                $"WHERE StudentNumber = {ID}";
 
             SqlCommand UpdateCom = new SqlCommand(UpdateQry, DatabaseCon);
             UpdateCom.ExecuteNonQuery();
