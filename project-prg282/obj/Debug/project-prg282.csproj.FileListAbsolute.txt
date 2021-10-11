@@ -30,3 +30,14 @@ C:\Users\francois\Source\Repos\GhostForceZA\Programming_282_Project\project-prg2
 C:\Users\francois\Source\Repos\GhostForceZA\Programming_282_Project\project-prg282\obj\Debug\project-prg282.csproj.CoreCompileInputs.cache
 C:\Users\francois\Source\Repos\GhostForceZA\Programming_282_Project\project-prg282\obj\Debug\project-prg282.exe
 C:\Users\francois\Source\Repos\GhostForceZA\Programming_282_Project\project-prg282\obj\Debug\project-prg282.pdb
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project-prg282.csproj.AssemblyReference.cache
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project_prg282.FrmLogin.resources
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project_prg282.PresentationLayer.FrmSignUp.resources
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project_prg282.Properties.Resources.resources
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project-prg282.csproj.GenerateResource.cache
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project-prg282.csproj.CoreCompileInputs.cache
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project-prg282.exe
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\obj\Debug\project-prg282.pdb
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\bin\Debug\project-prg282.exe.config
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\bin\Debug\project-prg282.exe
+C:\Skool Stuff\PRG282\PRG282_Project_Milestone 2\Git Repo\project-prg282\bin\Debug\project-prg282.pdb

@@ -9,6 +9,6 @@ namespace project_prg282.DataAccessLayer
 {
     interface iDataReturnal
     {
-        List<Student> getStudents() 
+        List<Student> getStudents();
     }
 }
