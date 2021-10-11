@@ -122,7 +122,7 @@ namespace project_prg282.PresentationLayer
                 string address = rtbAddress.Text;
                 string gender = cbGender.SelectedItem.ToString();
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
-                //updateUser(id, name, surname, etc.)//ids may be INDENTITY()
+                //updateUser(id, name, surname, etc.)
 
             }
             catch (FormatException)
