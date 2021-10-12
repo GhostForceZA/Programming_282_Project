@@ -53,8 +53,6 @@
     <Compile Include="BusinessLogicLayer\User.cs" />
     <Compile Include="DataAccessLayer\DataHandler.cs" />
     <Compile Include="DataAccessLayer\FileHandler.cs" />
-    <Compile Include="DataAccessLayer\IDatabaseControl.cs" />
-    <Compile Include="DataAccessLayer\iDataReturnal.cs" />
     <Compile Include="DataAccessLayer\IFileControl.cs" />
     <Compile Include="PresentationLayer\frmLogin.cs">
       <SubType>Form</SubType>

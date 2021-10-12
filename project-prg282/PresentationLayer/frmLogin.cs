@@ -73,7 +73,10 @@ namespace project_prg282
                     User user = new User();
                     if(user.UserExists(username, password))
                     {
-                        //main form
+                        //move to main form
+                        FrmMain main = new FrmMain();
+                        main.Show();
+                        this.Hide();
                     }
                     else
                     {

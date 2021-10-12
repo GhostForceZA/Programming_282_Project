@@ -18,6 +18,16 @@ namespace project_prg282.DataAccessLayer
         //CRUD - CREATE READ UPDATE DELETE
 
         //CREATE - Adding a new student to the database
+
+        public DataTable getAllStudents()
+        {
+            string query = "SELECT * FROM Student";
+            SqlDataAdapter adapter = new SqlDataAdapter(query, DatabaseCon);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            return dt;
+        }
         public void addStudent(string Name, string Surn, DateTime DOB, string Gender, string Phone, string Address)
         {
             DatabaseCon.Open();
@@ -33,7 +43,7 @@ namespace project_prg282.DataAccessLayer
         //CREATE - Adding a new student to the database, but with a stored procedure
         public void addStudentPROC(string Name, string Surn, DateTime DOB, string Gender, string Phone, string Address)
         {
-            SqlCommand cmd = new SqlCommand("spDeleteStudent", DatabaseCon);
+            SqlCommand cmd = new SqlCommand("spInsertStudent", DatabaseCon);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@Id", Name);

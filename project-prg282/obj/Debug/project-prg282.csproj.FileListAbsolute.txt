@@ -29,3 +29,6 @@ C:\Users\francois\source\repos\GhostForceZA\Programming_282_Project\project-prg2
 C:\Users\francois\source\repos\GhostForceZA\Programming_282_Project\project-prg282\obj\Debug\project-prg282.csproj.CoreCompileInputs.cache
 C:\Users\francois\source\repos\GhostForceZA\Programming_282_Project\project-prg282\obj\Debug\project-prg282.exe
 C:\Users\francois\source\repos\GhostForceZA\Programming_282_Project\project-prg282\obj\Debug\project-prg282.pdb
+C:\Users\francois\Source\Repos\GhostForceZA\Programming_282_Project\project-prg282\bin\Debug\project-prg282.exe.config
+C:\Users\francois\Source\Repos\GhostForceZA\Programming_282_Project\project-prg282\bin\Debug\project-prg282.exe
+C:\Users\francois\Source\Repos\GhostForceZA\Programming_282_Project\project-prg282\bin\Debug\project-prg282.pdb

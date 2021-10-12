@@ -4,56 +4,113 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using project_prg282.DataAccessLayer;
+using project_prg282.PresentationLayer;
+using System.Windows.Forms;
 
 namespace project_prg282.BusinessLogicLayer
 {
     class User: iDefineUser
     {
         string password, username;
-        DataHandler dh;
+        FileHandler fh;
         public User() 
         {
-            dh = new DataHandler();
+            fh = new FileHandler();
         }
         public User(string password, string username)
         {
             this.Password = password;
             this.Username = username;
-            dh = new DataHandler();
+            fh = new FileHandler();
         }
 
         public string Password { get => password; set => password = value; }
         public string Username { get => username; set => username = value; }
 
-        public bool ValidateUsername(string username)
+        private bool foundUsername(string username)
         {
             // the difference between this and Userexists, is this will only check if the username is found in case of a new user being added
             //this method is private and is just meant to be used inside the addUser method.
-            return true;
+            try
+            {
+                bool found = false;
+                List<User> users = extractUsers(fh.ReadTextFile());
+
+                foreach (User person in users)
+                {
+                    if (person.username == username)
+                    {
+                        found = true;
+                    }
+                }
+                return found;
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+
+         
+        }
+
+        private List<User> extractUsers(List<string> usersInText)
+        {
+            List<User> usersInObjects = new List<User>();
+            foreach (string being in usersInText)
+            {
+                string username = being.Substring(0, being.IndexOf(":"));
+                string password = being.Substring(being.IndexOf(":")+1);
+                usersInObjects.Add(new User(password, username));
+            }
+            return usersInObjects;
         }
 
         public bool UserExists(string Username, string password)
         {
             bool found = false;
 
-       //     foreach (User userCycle in dh.getUsers())
-         //   {
-             //   if(userCycle.Username == Username)
-              //  {
-             //       if(userCycle.Password == password)
-              //      {
+            foreach (User user in extractUsers(fh.ReadTextFile()))
+            {
+                if (foundUsername(Username))
+                {
+                    if (user.password == password)
+                    {
                         found = true;
-              //     }
-             //  }
-            //}
+                    }
+                }
+             
+            }
 
 
             return found;
         }
 
-        public void addUser(string Username, string password)// waiting for datahandler
+        public bool addUser(string Username, string password)
         {
+            bool success = true;
+            try
+            {
+                if (foundUsername(username))
+                {
+                    throw new InputException("Username already exists");
+                    
+                }
+                else
+                {
+                    fh.WriteToTextFile(this.ToString());
+                    return success;
+                }
+            }
+            catch
+            {
+                return !success;
+            }
+        }
 
+        public override string ToString()
+        {
+            return $"{this.username}:{this.password}";
         }
     }
 }

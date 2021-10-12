@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using project_prg282.PresentationLayer;
+using project_prg282.BusinessLogicLayer;
 
 namespace project_prg282.PresentationLayer
 {
@@ -84,21 +85,40 @@ namespace project_prg282.PresentationLayer
             {
                 string username = TxtUname.Text;
                 string password = TxtPassword.Text;
+                User user = new User();
                 //validation on user input
                 Regex re = new Regex(@"^([a-zA-Z0-9_-])(?=.{3,})");//at least 4 in length (more than 3)
                 Regex rePass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
                 if (username == "Username" || password == "Password")
                 {
                     //throw custom exception (Please enter values different from placeholder)
+                    //checks if the user supplied a user name and password
+                    throw new InputException("Please enter Username and Password");
+                   
                 }
-                if (!re.IsMatch(username) || !rePass.IsMatch(password))
+                else if (!re.IsMatch(username) || !rePass.IsMatch(password))
                 {
                     //throw custom exception (Invalid characters used)
-                    MessageBox.Show("WORKING");
+                    throw new InputException("user name or password contains invalid characters\nPassword requires at least: 1 uppercase, 1 lowercase, 1 number, 1 special character\nLonger than 8 characters\n username should be a minimum of 4 characters");
+                  
                 }
-                //addUser(username, password)
-            }
-            catch (Exception err)
+                else
+                {
+                    bool success = user.addUser(username, password);
+                    if (success)
+                    {
+                        FrmMain frm = new FrmMain();
+                        frm.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        throw new InputException("an error occured try again");
+                    }
+                }
+               
+            }           
+            catch(InputException err)
             {
                 MessageBox.Show(err.Message, "Invalid Input", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using project_prg282.DataAccessLayer;
+using project_prg282.BusinessLogicLayer;
 
 namespace project_prg282.PresentationLayer
 {
@@ -14,6 +16,9 @@ namespace project_prg282.PresentationLayer
     {
         Point lastPoint;
         List<string> modules = new List<string>();
+        DataHandler dh = new DataHandler();
+        Student Student;
+      
         public FrmMain()
         {
             InitializeComponent();
@@ -50,6 +55,8 @@ namespace project_prg282.PresentationLayer
                 cbModules.Items.Add(mod);
             }
             addToListView();
+
+            
         }
         //create movable app
         private void FrmMain_MouseDown(object sender, MouseEventArgs e)
@@ -115,14 +122,15 @@ namespace project_prg282.PresentationLayer
             //get all inputs
             try
             {
-                int id = int.Parse(txtID.Text);
+                string id = txtID.Text;
                 string name = txtName.Text;
-                string surname = txtSurname.Text;
-                DateTime dob = dtDOB.Value;
-                string address = rtbAddress.Text;
+                string surname = txtSurname.Text;               
+                DateTime dob = dtDOB.Value;               
                 string gender = cbGender.SelectedItem.ToString();
+                string phone = txtPhone.Text;
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
-                //updateUser(id, name, surname, etc.)
+                string address = rtbAddress.Text;
+                dh.UpdateStudentPROC(id, name, surname, dob, gender, phone, address);
 
             }
             catch (FormatException)
@@ -141,10 +149,12 @@ namespace project_prg282.PresentationLayer
                 string surname = txtSurname.Text;
                 DateTime dob = dtDOB.Value;
                 string address = rtbAddress.Text;
+                string phone = txtPhone.Text;
                 string gender = cbGender.SelectedItem.ToString();
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
 
                 //registerUser(id, name, surname, etc.)//ids may be INDENTITY()
+                dh.addStudent(name, surname, dob, gender, phone, address);
 
             }
             catch (FormatException)
@@ -157,8 +167,8 @@ namespace project_prg282.PresentationLayer
         {
             try
             {
-                int id = int.Parse(txtID.Text);
-                //deleteUser(id)
+                string id = txtID.Text;
+                dh.DeleteStudentPROC(id);
             }
             catch (FormatException)
             {
@@ -183,21 +193,21 @@ namespace project_prg282.PresentationLayer
 
         private void addToListView()
         {
-            //getUsers() --Return a dataTable
-            //need to ensure column names are correct
-            //foreach(DataRow row in getUsers().Rows)
-            //{
-            //    ListViewItem item = new ListViewItem(row["id"].ToString());
-            //    item.SubItems.Add(row["Name"].ToString());
-            //    item.SubItems.Add(row["Surname"].ToString());
-            //    item.SubItems.Add(row["DOB"].ToString());
-            //    item.SubItems.Add(row["Gender"].ToString());
-            //    item.SubItems.Add(row["Phone"].ToString());
-            //    item.SubItems.Add(row["Address"].ToString());
-            //    item.SubItems.Add(row["Modules"].ToString());
-            //    item.SubItems.Add(row["profilePhoto"].ToString());
+           // getUsers()--Return a dataTable
+           //need to ensure column names are correct
+            foreach (DataRow row in dh.getAllStudents().Rows)
+            {
+                ListViewItem item = new ListViewItem(row["id"].ToString());
+                item.SubItems.Add(row["Name"].ToString());
+                item.SubItems.Add(row["Surname"].ToString());
+                item.SubItems.Add(row["DOB"].ToString());
+                item.SubItems.Add(row["Gender"].ToString());
+                item.SubItems.Add(row["Phone"].ToString());
+                item.SubItems.Add(row["Address"].ToString());
+                item.SubItems.Add(row["Modules"].ToString());
+                item.SubItems.Add(row["profilePhoto"].ToString());
 
-            //}
+            }
         }
 
         private void lvDetails_MouseClick(object sender, MouseEventArgs e)
