@@ -13,16 +13,18 @@ namespace project_prg282.DataAccessLayer
 
         public List<string> ReadTextFile()
         {
-            StreamReader reader = new StreamReader(fileName);
-            string line;
-            List<string> users = new List<string>();
-
-            while ((line = reader.ReadLine()) != null)
+            using (StreamReader reader = new StreamReader(fileName))
             {
-                users.Add(line);
-            }
+                string line;
+                List<string> users = new List<string>();
 
-            return users;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    users.Add(line);
+                }
+                return users;
+            }
+            
         }
 
         public void WriteToTextFile(string text)

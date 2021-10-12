@@ -7,8 +7,6 @@ using project_prg282.BusinessLogicLayer;
 using System.Data.SqlClient;
 using System.Data;
 
-
-
 namespace project_prg282.DataAccessLayer
 {
     class DataHandler
@@ -21,22 +19,25 @@ namespace project_prg282.DataAccessLayer
 
         public DataTable getAllStudents()
         {
-            string query = "SELECT * FROM Student";
+            string query = "SELECT * FROM Student INNER JOIN StudentModule ON Student.StudentNumber = StudentModule.StudentNumber";
             SqlDataAdapter adapter = new SqlDataAdapter(query, DatabaseCon);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
 
             return dt;
         }
-        public void addStudent(string Name, string Surn, DateTime DOB, string Gender, string Phone, string Address)
+        public void addStudent(string id, string Name, string Surn,byte[] photoArr, DateTime DOB, string Gender, string Phone, string Address)
         {
             DatabaseCon.Open();
 
-            string InsertQry = $"INSERT INTO Student (Name, Surname, DOB, Gender, Phone, Address) VALUES ('{Name}','{Surn}','{DOB}','{Gender}',{Phone},'{Address}')";
+            string InsertQry = $"INSERT INTO Student(StudentNumber, Name, Surname, StudentImage, DOB, Gender, Phone, Address) VALUES ('{id}','{Name}','{Surn}', '{photoArr}', '{DOB}','{Gender}','{Phone}','{Address}')";
+            string InsertQry2 = $"INSERT INTO StudentModule(StudentNumber,ModuleCode) VALUES ('{id}','PRG181')";
 
             SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
+            SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
+            //Com.Parameters.AddWithValue("@image", photoArr);
             Com.ExecuteNonQuery();
-
+            Com2.ExecuteNonQuery();
             DatabaseCon.Close();
         }
 

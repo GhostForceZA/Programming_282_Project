@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using project_prg282.DataAccessLayer;
 using project_prg282.BusinessLogicLayer;
+using System.IO;
+using System.Drawing.Imaging;
 
 namespace project_prg282.PresentationLayer
 {
@@ -17,8 +19,10 @@ namespace project_prg282.PresentationLayer
         Point lastPoint;
         List<string> modules = new List<string>();
         DataHandler dh = new DataHandler();
-        Student Student;
-      
+        byte[] temp;
+        private static readonly ImageConverter _imageConverter = new ImageConverter();
+
+
         public FrmMain()
         {
             InitializeComponent();
@@ -55,7 +59,6 @@ namespace project_prg282.PresentationLayer
                 cbModules.Items.Add(mod);
             }
             addToListView();
-
             
         }
         //create movable app
@@ -144,7 +147,7 @@ namespace project_prg282.PresentationLayer
         {
             try
             {
-                int id = int.Parse(txtID.Text);
+                string id = txtID.Text;
                 string name = txtName.Text;
                 string surname = txtSurname.Text;
                 DateTime dob = dtDOB.Value;
@@ -153,9 +156,14 @@ namespace project_prg282.PresentationLayer
                 string gender = cbGender.SelectedItem.ToString();
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
 
-                //registerUser(id, name, surname, etc.)//ids may be INDENTITY()
-                dh.addStudent(name, surname, dob, gender, phone, address);
 
+                MemoryStream ms = new MemoryStream();
+                pbProfile.Image.Save(ms, ImageFormat.Png);
+                byte[] photo_array = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(photo_array, 0, photo_array.Length);
+                dh.addStudent(id, name, surname, photo_array, dob, gender, phone, address);
+                addToListView();
             }
             catch (FormatException)
             {
@@ -193,20 +201,21 @@ namespace project_prg282.PresentationLayer
 
         private void addToListView()
         {
-           // getUsers()--Return a dataTable
-           //need to ensure column names are correct
+
+            // getUsers()--Return a dataTable
+            //need to ensure column names are correct
             foreach (DataRow row in dh.getAllStudents().Rows)
             {
-                ListViewItem item = new ListViewItem(row["id"].ToString());
+                ListViewItem item = new ListViewItem(row["StudentNumber"].ToString());
                 item.SubItems.Add(row["Name"].ToString());
                 item.SubItems.Add(row["Surname"].ToString());
+                temp = (byte[])row["StudentImage"];
                 item.SubItems.Add(row["DOB"].ToString());
                 item.SubItems.Add(row["Gender"].ToString());
                 item.SubItems.Add(row["Phone"].ToString());
                 item.SubItems.Add(row["Address"].ToString());
-                item.SubItems.Add(row["Modules"].ToString());
-                item.SubItems.Add(row["profilePhoto"].ToString());
-
+                item.SubItems.Add(row["ModuleCode"].ToString());
+                lvDetails.Items.Add(item);
             }
         }
 
@@ -215,11 +224,24 @@ namespace project_prg282.PresentationLayer
             txtID.Text = lvDetails.SelectedItems[0].SubItems[0].Text;
             txtName.Text = lvDetails.SelectedItems[0].SubItems[1].Text;
             txtSurname.Text = lvDetails.SelectedItems[0].SubItems[2].Text;
-            dtDOB.Text = lvDetails.SelectedItems[0].SubItems[3].Text; //Year/Month/Day
-            cbGender.Text = lvDetails.SelectedItems[0].SubItems[4].Text;
-            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
-            rtbModules.Text = lvDetails.SelectedItems[0].SubItems[6].Text;
-           // pbProfile.Image = lvDetails.SelectedItems[0].SubItems[7].Text;//convert to an image
+            //byte[] temp = Encoding.ASCII.GetBytes(lvDetails.SelectedItems[0].SubItems[3].Text);//convert to an image
+            //pbProfile.Image=conv(temp);            
+            dtDOB.Text = lvDetails.SelectedItems[0].SubItems[4].Text; //Year/Month/Day
+            cbGender.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
+            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[6].Text;
+            txtPhone.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
+            rtbModules.Text = lvDetails.SelectedItems[0].SubItems[8].Text;
+            
+        }
+        private Image conv(byte[] byteArray)
+        {
+            Image returnImage;
+            using (var ms = new MemoryStream(byteArray))
+            {
+                ms.Position = 0;
+                returnImage = new Bitmap(ms);
+            }
+            return returnImage;
         }
     }
 }
