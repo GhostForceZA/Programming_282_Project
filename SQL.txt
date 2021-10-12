@@ -1,0 +1,67 @@
+CREATE DATABASE StudentInfo
+ON
+(NAME = StudentData1,
+FILENAME = 'C:\PRG282 Project\StudentData1.mdf',
+SIZE = 20 MB,
+MAXSIZE = UNLIMITED,
+FILEGROWTH = 20%)
+
+LOG ON
+(NAME = StudentLog1,
+FILENAME = 'C:\PRG282 Project\StudentLog1.ldf',
+SIZE = 20 MB,
+MAXSIZE = UNLIMITED,
+FILEGROWTH = 20%)
+
+C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA
+
+USE StudentInfo
+GO
+CREATE TABLE Student
+(StudentNumber VARCHAR(20) NOT NULL PRIMARY KEY,
+Name VARCHAR(10) NOT NULL,
+Surname VARCHAR(10) NOT NULL,
+StudentImage IMAGE NOT NULL,
+DOB DATE NOT NULL,
+Gender VARCHAR(10) NOT NULL,
+Phone VARCHAR(11) NOT NULL,
+Address VARCHAR(60) NOT NULL
+)
+
+CREATE TABLE Module
+(ModuleCode VARCHAR(10) NOT NULL PRIMARY KEY,
+Name VARCHAR(20) NOT NULL,
+Description VARCHAR(100) NOT NULL,
+OnlineResources VARCHAR(60) NOT NULL
+)
+
+CREATE TABLE StudentModule
+(StudentNumber VARCHAR(20) NOT NULL REFERENCES Student(StudentNumber),
+ModuleCode VARCHAR(10) NOT NULL REFERENCES Module(ModuleCode)
+)
+
+CREATE VIEW StudentAndModule
+AS
+SELECT s.StudentNumber, s.Name, S.Surname, s.StudentImage, s.DOB, s.Gender, s.Phone, s.Address, m.ModuleCode
+FROM Student s
+INNER JOIN StudentModule sm
+ON sm.StudentNumber = s.StudentNumber
+INNER JOIN Module m
+ON sm.ModuleCode = m.ModuleCode
+
+USE StudentInfo
+GO
+INSERT INTO Module
+VALUES('PRG281', 'Programming', 'Learn how to code', 'somecode.org'), ('PRG282', 'Programming', 'Learn how to code', 'somecode.org'), ('DBD281', 'Database', 'Learn how to database', 'somedatabase.org')
+USE StudentInfo
+GO
+INSERT INTO Student
+VALUES(111, 'Curd', 'Drome', (SELECT BulkColumn 
+FROM Openrowset( Bulk 'C:\Users\Jack\Desktop\Emoji\download.jpg', Single_Blob) as img), '2000-05-15', 'Male', '098657657', '50 Someplace Ave'), (112, 'Jest', 'Zim', (SELECT BulkColumn 
+FROM Openrowset( Bulk 'C:\Users\Jack\Desktop\Emoji\download.jpg', Single_Blob) as img), '2000-05-16', 'Male', '098657659', '51 Someplace Ave'), (113, 'Area', 'Vanes', (SELECT BulkColumn 
+FROM Openrowset( Bulk 'C:\Users\Jack\Desktop\Emoji\download.jpg', Single_Blob) as img), '2000-05-17', 'Male', '098657651', '52 Someplace Ave')
+
+USE StudentInfo
+GO
+INSERT INTO StudentModule
+VALUES(111, 'PRG281'), (112, 'PRG282'), (113, 'DBD281')
