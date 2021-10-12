@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using project_prg282.BusinessLogicLayer;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Forms;
 
 namespace project_prg282.DataAccessLayer
 {
@@ -26,18 +27,22 @@ namespace project_prg282.DataAccessLayer
 
             return dt;
         }
-        public void addStudent(string id, string Name, string Surn,byte[] photoArr, DateTime DOB, string Gender, string Phone, string Address)
+        public void addStudent(string id, string Name, string Surn,byte[] photoArr, DateTime DOB, string Gender, string Phone, string Address, string[] modules)
         {
             DatabaseCon.Open();
 
             string InsertQry = $"INSERT INTO Student(StudentNumber, Name, Surname, StudentImage, DOB, Gender, Phone, Address) VALUES ('{id}','{Name}','{Surn}', '{photoArr}', '{DOB}','{Gender}','{Phone}','{Address}')";
-            string InsertQry2 = $"INSERT INTO StudentModule(StudentNumber,ModuleCode) VALUES ('{id}','PRG181')";
-
             SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
-            SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
-            //Com.Parameters.AddWithValue("@image", photoArr);
             Com.ExecuteNonQuery();
-            Com2.ExecuteNonQuery();
+
+            for (int i = 0; i < modules.Length; i++)
+            {
+                string InsertQry2 = $"INSERT INTO StudentModule(StudentNumber,ModuleCode) VALUES ('{id}','{modules[i]}')";
+                SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
+                Com2.ExecuteNonQuery();
+            }
+   
+
             DatabaseCon.Close();
         }
 
@@ -59,9 +64,9 @@ namespace project_prg282.DataAccessLayer
         }
 
         //READ - Search for a specific student
-        public DataTable getStudents(string Name)
+        public DataTable getStudents(string ID)
         {
-            string Search = "SELECT * FROM Student WHERE Name = " + Name;
+            string Search = $"Select * from Student s INNER JOIN StudentModule sm ON s.StudentNumber = sm.StudentNumber WHERE s.StudentNumber = '{ID}'";
 
             SqlDataAdapter Adap = new SqlDataAdapter(Search, DatabaseCon);
 
@@ -89,49 +94,44 @@ namespace project_prg282.DataAccessLayer
         }
 
         //UPDATE - Updating an existing student
-        public void UpdateStudent(string ID, string NName, string NSur, DateTime NDOB, string NGender, string NPhone, string NAddress)
+        public void UpdateStudent(string id, string Name, string Surn, byte[] photoArr, DateTime DOB, string Gender, string Phone, string Address, string[] modules)
         {
             DatabaseCon.Open();
+            // we need to add the student to the student table and then respectively add each module in the studentModule join table
+            string whereClause = $"WHERE StudentNumber = '{id}'";
 
-            string UpdateQry = $"UPDATE Student SET Name = {NName}, Surname = {NSur}, DOB = {NDOB}, " +
-                $"Gender = {NGender}, Phone = {NPhone} , Address ={NAddress} " +
-                $"WHERE StudentNumber = {ID}";
+            string InsertQry = $"UPDATE Student SET StudentNumber = '{id}', [Name] = '{Name}', Surname = '{Surn}', StudentImage = '{photoArr}', DOB = '{DOB}', Gender = '{Gender}', Phone = '{Phone}', [Address] = '{Address}' {whereClause}";
+            MessageBox.Show(InsertQry);
+            SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
+            Com.ExecuteNonQuery();
 
-            SqlCommand UpdateCom = new SqlCommand(UpdateQry, DatabaseCon);
-            UpdateCom.ExecuteNonQuery();
-
+            //loop though modules and add each module code beside student number, this links it
+            for (int i = 0; i < modules.Length; i++)
+            {
+                string InsertQry2 = $"UPDATE StudentModule SET StudentNumber = '{id}', ModuleCode = '{modules[i]}' {whereClause}";
+                SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
+                Com2.ExecuteNonQuery();
+            }
+       
             DatabaseCon.Close();
         }
 
-        //UPDATE - Updating an existing student, but with a stored procedure
-        public void UpdateStudentPROC(string ID, string NName, string NSur, DateTime NDOB, string NGender, string NPhone, string NAddress)
-        {
-            SqlCommand cmd = new SqlCommand("spUpdateStudent", DatabaseCon);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@Id", ID);
-            cmd.Parameters.AddWithValue("@Id", NName);
-            cmd.Parameters.AddWithValue("@Id", NSur);
-            cmd.Parameters.AddWithValue("@Id", NDOB);
-            cmd.Parameters.AddWithValue("@Id", NGender);
-            cmd.Parameters.AddWithValue("@Id", NPhone);
-            cmd.Parameters.AddWithValue("@Id", NAddress);
-
-            DatabaseCon.Open();
-            cmd.ExecuteNonQuery();
-        }
+       
 
         //DELETE - Delete a student from the database
         public void DeleteStudent(string ID)
         {
             DatabaseCon.Open();
 
-            string DeleteQry = "DELETE FROM Student WHERE StudentNumber = " + ID;
-
+            string DeleteQryStep1 = $"DELETE FROM StudentModule WHERE StudentNumber = '{ID}'";
+            string DeleteQryStep2 = $"DELETE FROM Student WHERE StudentNumber = '{ID}'";
             SqlCommand DeleteCom = new SqlCommand();
+            DeleteCom.Connection = DatabaseCon;
 
-            DeleteCom.CommandText = DeleteQry;
-
+            DeleteCom.CommandText = DeleteQryStep1;           
+            DeleteCom.ExecuteNonQuery();
+            DeleteCom.CommandText = DeleteQryStep2;
+            DeleteCom.ExecuteNonQuery();
             DatabaseCon.Close();
         }
 

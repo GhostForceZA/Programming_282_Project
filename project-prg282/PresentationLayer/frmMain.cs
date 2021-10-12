@@ -125,6 +125,7 @@ namespace project_prg282.PresentationLayer
             //get all inputs
             try
             {
+                lvDetails.Items.Clear();
                 string id = txtID.Text;
                 string name = txtName.Text;
                 string surname = txtSurname.Text;               
@@ -133,7 +134,14 @@ namespace project_prg282.PresentationLayer
                 string phone = txtPhone.Text;
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
                 string address = rtbAddress.Text;
-                dh.UpdateStudentPROC(id, name, surname, dob, gender, phone, address);
+
+                MemoryStream ms = new MemoryStream();
+                pbProfile.Image.Save(ms, ImageFormat.Png);
+                byte[] photo_array = new byte[ms.Length];
+                ms.Position = 0;
+                ms.Read(photo_array, 0, photo_array.Length);
+
+                dh.UpdateStudent(id, name, surname, photo_array, dob, gender, phone, address, modules);
 
             }
             catch (FormatException)
@@ -147,6 +155,7 @@ namespace project_prg282.PresentationLayer
         {
             try
             {
+                lvDetails.Items.Clear();
                 string id = txtID.Text;
                 string name = txtName.Text;
                 string surname = txtSurname.Text;
@@ -162,12 +171,16 @@ namespace project_prg282.PresentationLayer
                 byte[] photo_array = new byte[ms.Length];
                 ms.Position = 0;
                 ms.Read(photo_array, 0, photo_array.Length);
-                dh.addStudent(id, name, surname, photo_array, dob, gender, phone, address);
+                dh.addStudent(id, name, surname, photo_array, dob, gender, phone, address,modules);
                 addToListView();
             }
             catch (FormatException)
             {
                 MessageBox.Show("Only valid characters to be entered");
+            }
+            catch(Exception er)
+            {
+                MessageBox.Show(er.Message);
             }
         }
 
@@ -175,12 +188,17 @@ namespace project_prg282.PresentationLayer
         {
             try
             {
+                lvDetails.Items.Clear();
                 string id = txtID.Text;
-                dh.DeleteStudentPROC(id);
+                dh.DeleteStudent(id);
             }
             catch (FormatException)
             {
                 MessageBox.Show("Only valid characters to be entered");
+            }
+            catch(Exception er)
+            {
+                MessageBox.Show(er.Message);
             }
         }
 
@@ -188,14 +206,43 @@ namespace project_prg282.PresentationLayer
         {
             try
             {
-                int id = int.Parse(txtID.Text);
+            
+                string id = txtID.Text;
                 //searchUser(id); --return the persons data, either as a person object or a formattable string
                 //assign to textboxes
+                DataRowCollection data = dh.getStudents(id).Rows;
+
+                if (data.Count >= 1)
+                {
+                
+                    lvDetails.Items.Clear();
+                    foreach (DataRow row in data)
+                    {
+                        ListViewItem item = new ListViewItem(row["StudentNumber"].ToString());
+                        item.SubItems.Add(row["Name"].ToString());
+                        item.SubItems.Add(row["Surname"].ToString());
+                        temp = (byte[])row["StudentImage"];
+                        item.SubItems.Add(row["DOB"].ToString());
+                        item.SubItems.Add(row["Gender"].ToString());
+                        item.SubItems.Add(row["Phone"].ToString());
+                        item.SubItems.Add(row["Address"].ToString());
+                        item.SubItems.Add(row["ModuleCode"].ToString());
+                        lvDetails.Items.Add(item);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Student not found");
+                }
                 
             }
             catch (FormatException)
             {
                 MessageBox.Show("Only valid characters to be entered");
+            }
+            catch(Exception er)
+            {
+                MessageBox.Show(er.Message);
             }
         }
 
@@ -226,11 +273,11 @@ namespace project_prg282.PresentationLayer
             txtSurname.Text = lvDetails.SelectedItems[0].SubItems[2].Text;
             //byte[] temp = Encoding.ASCII.GetBytes(lvDetails.SelectedItems[0].SubItems[3].Text);//convert to an image
             //pbProfile.Image=conv(temp);            
-            dtDOB.Text = lvDetails.SelectedItems[0].SubItems[4].Text; //Year/Month/Day
-            cbGender.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
-            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[6].Text;
-            txtPhone.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
-            rtbModules.Text = lvDetails.SelectedItems[0].SubItems[8].Text;
+            dtDOB.Text = lvDetails.SelectedItems[0].SubItems[3].Text; //Year/Month/Day
+            cbGender.Text = lvDetails.SelectedItems[0].SubItems[4].Text;
+            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
+            txtPhone.Text = lvDetails.SelectedItems[0].SubItems[6].Text;
+            rtbModules.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
             
         }
         private Image conv(byte[] byteArray)
