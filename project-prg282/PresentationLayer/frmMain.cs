@@ -164,12 +164,7 @@ namespace project_prg282.PresentationLayer
                 string phone = txtPhone.Text;
                 string gender = cbGender.SelectedItem.ToString();
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
-                string stuff = "";
-                foreach (string item in modules)
-                {
-                    stuff += item;
-                }
-                MessageBox.Show(stuff);
+                
 
                 MemoryStream ms = new MemoryStream();
                 pbProfile.Image.Save(ms, ImageFormat.Png);
@@ -231,7 +226,7 @@ namespace project_prg282.PresentationLayer
                         item.SubItems.Add(row["Gender"].ToString());
                         item.SubItems.Add(row["Phone"].ToString());
                         item.SubItems.Add(row["Address"].ToString());
-                        item.SubItems.Add(row["ModuleCode"].ToString());
+                        //item.SubItems.Add(row["ModuleCode"].ToString());
                         lvDetails.Items.Add(item);
                     }
                 }
@@ -266,7 +261,7 @@ namespace project_prg282.PresentationLayer
                 item.SubItems.Add(row["Gender"].ToString());
                 item.SubItems.Add(row["Phone"].ToString());
                 item.SubItems.Add(row["Address"].ToString());
-                item.SubItems.Add(row["ModuleCode"].ToString());
+                //item.SubItems.Add(row["ModuleCode"].ToString());
                 lvDetails.Items.Add(item);
             }
         }

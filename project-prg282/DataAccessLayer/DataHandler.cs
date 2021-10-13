@@ -20,7 +20,7 @@ namespace project_prg282.DataAccessLayer
 
         public DataTable getAllStudents()
         {
-            string query = "SELECT * FROM Student LEFT JOIN StudentModule ON Student.StudentNumber = StudentModule.StudentNumber";
+            string query = "SELECT DISTINCT s.StudentNumber, s.[Name], s.Surname, s.DOB, s.Gender, s.Phone, s.Address FROM Student s LEFT JOIN StudentModule ON s.StudentNumber = StudentModule.StudentNumber ";
             SqlDataAdapter adapter = new SqlDataAdapter(query, DatabaseCon);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
@@ -38,7 +38,7 @@ namespace project_prg282.DataAccessLayer
 
             for (int i = 0; i < modules.Length; i++)
             {
-                values += $"('{id}','{modules[i]}')";
+                values += $"('{id}','{modules[i].Trim()}')";
                 if (i < modules.Length-1)
                 {
                     values += ",";

@@ -48,7 +48,6 @@ namespace project_prg282.PresentationLayer
             this.Gender = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ModuleCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlInput = new System.Windows.Forms.Panel();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.dtDOB = new System.Windows.Forms.DateTimePicker();
@@ -224,8 +223,7 @@ namespace project_prg282.PresentationLayer
             this.DOB,
             this.Gender,
             this.Phone,
-            this.Address,
-            this.ModuleCode});
+            this.Address});
             this.lvDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvDetails.ForeColor = System.Drawing.Color.White;
             this.lvDetails.FullRowSelect = true;
@@ -271,11 +269,6 @@ namespace project_prg282.PresentationLayer
             // 
             this.Address.Text = "Address";
             this.Address.Width = 70;
-            // 
-            // ModuleCode
-            // 
-            this.ModuleCode.Text = "Module Codes";
-            this.ModuleCode.Width = 80;
             // 
             // pnlInput
             // 
@@ -677,6 +670,5 @@ namespace project_prg282.PresentationLayer
         private System.Windows.Forms.ColumnHeader Gender;
         private System.Windows.Forms.ColumnHeader Phone;
         private System.Windows.Forms.ColumnHeader Address;
-        private System.Windows.Forms.ColumnHeader ModuleCode;
     }
 }
