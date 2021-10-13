@@ -73,6 +73,7 @@ namespace project_prg282.PresentationLayer
             this.label2 = new System.Windows.Forms.Label();
             this.btnExitApp = new System.Windows.Forms.Button();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
+            this.btnReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -192,6 +193,7 @@ namespace project_prg282.PresentationLayer
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.btnReset);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.pnlInput);
             this.panel3.Controls.Add(this.panel4);
@@ -230,7 +232,7 @@ namespace project_prg282.PresentationLayer
             this.lvDetails.HideSelection = false;
             this.lvDetails.Location = new System.Drawing.Point(7, 6);
             this.lvDetails.Name = "lvDetails";
-            this.lvDetails.Size = new System.Drawing.Size(611, 202);
+            this.lvDetails.Size = new System.Drawing.Size(604, 202);
             this.lvDetails.TabIndex = 0;
             this.lvDetails.UseCompatibleStateImageBehavior = false;
             this.lvDetails.View = System.Windows.Forms.View.Details;
@@ -239,7 +241,6 @@ namespace project_prg282.PresentationLayer
             // StudentNumber
             // 
             this.StudentNumber.Text = "ID";
-            this.StudentNumber.Width = 90;
             // 
             // Namefg
             // 
@@ -259,7 +260,7 @@ namespace project_prg282.PresentationLayer
             // Gender
             // 
             this.Gender.Text = "Gender";
-            this.Gender.Width = 90;
+            this.Gender.Width = 70;
             // 
             // Phone
             // 
@@ -594,6 +595,22 @@ namespace project_prg282.PresentationLayer
             // 
             this.openFileDialogImage.FileName = "openFileDialog1";
             // 
+            // btnReset
+            // 
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(510, 192);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(0);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(119, 32);
+            this.btnReset.TabIndex = 20;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,5 +688,6 @@ namespace project_prg282.PresentationLayer
         private System.Windows.Forms.ColumnHeader Gender;
         private System.Windows.Forms.ColumnHeader Phone;
         private System.Windows.Forms.ColumnHeader Address;
+        private System.Windows.Forms.Button btnReset;
     }
 }

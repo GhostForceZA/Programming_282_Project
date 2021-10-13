@@ -163,5 +163,14 @@ namespace project_prg282.DataAccessLayer
             DatabaseCon.Open();
             cmd.ExecuteNonQuery();
         }
+
+        public DataTable getModules(string id)
+        {
+            string query = $"SELECT Module.ModuleCode FROM Module INNER JOIN StudentModule ON Module.ModuleCode = StudentModule.ModuleCode WHERE StudentModule.StudentNumber = '{id}'";
+            SqlDataAdapter adapter = new SqlDataAdapter(query, DatabaseCon);
+            DataTable DT = new DataTable();
+            adapter.Fill(DT);
+            return DT;
+        }
     }
 }

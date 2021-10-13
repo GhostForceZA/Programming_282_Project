@@ -135,12 +135,17 @@ namespace project_prg282.PresentationLayer
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
                 string address = rtbAddress.Text;
 
-                MemoryStream ms = new MemoryStream();
-                pbProfile.Image.Save(ms, ImageFormat.Png);
-                byte[] photo_array = new byte[ms.Length];
-                ms.Position = 0;
-                ms.Read(photo_array, 0, photo_array.Length);
-
+                byte[] photo_array = null;
+                if (pbProfile.Image != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        pbProfile.Image.Save(ms, ImageFormat.Png);
+                        photo_array = new byte[ms.Length];
+                        ms.Position = 0;
+                        ms.Read(photo_array, 0, photo_array.Length);
+                    }
+                }
                 dh.UpdateStudent(id, name, surname, photo_array, dob, gender, phone, address, modules);
 
             }
@@ -164,19 +169,32 @@ namespace project_prg282.PresentationLayer
                 string phone = txtPhone.Text;
                 string gender = cbGender.SelectedItem.ToString();
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
-                
-
-                MemoryStream ms = new MemoryStream();
-                pbProfile.Image.Save(ms, ImageFormat.Png);
-                byte[] photo_array = new byte[ms.Length];
-                ms.Position = 0;
-                ms.Read(photo_array, 0, photo_array.Length);
-                dh.addStudent(id, name, surname, photo_array, dob, gender, phone, address,modules);
+                //MessageBox.Show(modules[0].ToString());
+                if (modules[0]=="")
+                {
+                    modules[0] = "DF101";
+                }
+                byte[] photo_array=null;
+                if(pbProfile.Image != null)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        pbProfile.Image.Save(ms, ImageFormat.Png);
+                        photo_array = new byte[ms.Length];
+                        ms.Position = 0;
+                        ms.Read(photo_array, 0, photo_array.Length);
+                    }
+                }
+                dh.addStudent(id, name, surname, photo_array, dob, gender[0].ToString(), phone, address, modules);
                 addToListView();
             }
             catch (FormatException)
             {
                 MessageBox.Show("Only valid characters to be entered");
+            }
+            catch(InputException er)
+            {
+                MessageBox.Show(er.Message);
             }
             catch(Exception er)
             {
@@ -188,7 +206,6 @@ namespace project_prg282.PresentationLayer
         {
             try
             {
-                lvDetails.Items.Clear();
                 string id = txtID.Text;
                 dh.DeleteStudent(id);
                 addToListView();
@@ -252,6 +269,7 @@ namespace project_prg282.PresentationLayer
 
             // getUsers()--Return a dataTable
             //need to ensure column names are correct
+            lvDetails.Items.Clear();
             foreach (DataRow row in dh.getAllStudents().Rows)
             {
                 ListViewItem item = new ListViewItem(row["StudentNumber"].ToString());
@@ -275,11 +293,31 @@ namespace project_prg282.PresentationLayer
             //byte[] temp = Encoding.ASCII.GetBytes(lvDetails.SelectedItems[0].SubItems[3].Text);//convert to an image
             //pbProfile.Image=conv(temp);            
             dtDOB.Text = lvDetails.SelectedItems[0].SubItems[3].Text; //Year/Month/Day
-            cbGender.Text = lvDetails.SelectedItems[0].SubItems[4].Text;
+            //setting gender
+            switch (lvDetails.SelectedItems[0].SubItems[4].Text)
+            {
+                case "M":
+                    cbGender.SelectedIndex = 0;
+                    break;
+                case "F":
+                    cbGender.SelectedIndex = 1;
+                    break;
+                default:
+                    cbGender.SelectedIndex = 2;
+                    break;
+            }
+
             txtPhone.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
-            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[6].Text;     
+            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[6].Text;
+            //adding modules
+            DataTable mods = dh.getModules(lvDetails.SelectedItems[0].SubItems[0].Text);
+            rtbModules.Clear();
+            foreach (DataRow module in mods.Rows)
+            {
+                rtbModules.AppendText(module[0].ToString()+" ");
+            }
             //rtbModules.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
-            
+
         }
         private Image conv(byte[] byteArray)
         {
@@ -290,6 +328,20 @@ namespace project_prg282.PresentationLayer
                 returnImage = new Bitmap(ms);
             }
             return returnImage;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            txtID.Clear();
+            txtName.Clear();
+            txtPhone.Clear();
+            txtSurname.Clear();
+            dtDOB.Text = "2001/01/01";
+            cbGender.SelectedIndex = -1;
+            cbModules.SelectedIndex = -1;
+            rtbAddress.Clear();
+            rtbModules.Clear();
+            addToListView();
         }
     }
 }
