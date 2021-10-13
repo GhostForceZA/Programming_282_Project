@@ -191,6 +191,7 @@ namespace project_prg282.PresentationLayer
                 lvDetails.Items.Clear();
                 string id = txtID.Text;
                 dh.DeleteStudent(id);
+                addToListView();
             }
             catch (FormatException)
             {
@@ -221,7 +222,7 @@ namespace project_prg282.PresentationLayer
                         ListViewItem item = new ListViewItem(row["StudentNumber"].ToString());
                         item.SubItems.Add(row["Name"].ToString());
                         item.SubItems.Add(row["Surname"].ToString());
-                        temp = (byte[])row["StudentImage"];
+                        //temp = (byte[])row["StudentImage"];
                         item.SubItems.Add(row["DOB"].ToString());
                         item.SubItems.Add(row["Gender"].ToString());
                         item.SubItems.Add(row["Phone"].ToString());
@@ -277,7 +278,7 @@ namespace project_prg282.PresentationLayer
             cbGender.Text = lvDetails.SelectedItems[0].SubItems[4].Text;
             txtPhone.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
             rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[6].Text;     
-            rtbModules.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
+            //rtbModules.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
             
         }
         private Image conv(byte[] byteArray)

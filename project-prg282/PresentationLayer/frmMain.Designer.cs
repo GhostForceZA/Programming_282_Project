@@ -199,7 +199,7 @@ namespace project_prg282.PresentationLayer
             this.panel3.Location = new System.Drawing.Point(191, 30);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(684, 450);
+            this.panel3.Size = new System.Drawing.Size(633, 450);
             this.panel3.TabIndex = 2;
             // 
             // panel6
@@ -209,7 +209,7 @@ namespace project_prg282.PresentationLayer
             this.panel6.Location = new System.Drawing.Point(12, 233);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(672, 208);
+            this.panel6.Size = new System.Drawing.Size(614, 208);
             this.panel6.TabIndex = 3;
             // 
             // lvDetails
@@ -228,9 +228,9 @@ namespace project_prg282.PresentationLayer
             this.lvDetails.ForeColor = System.Drawing.Color.White;
             this.lvDetails.FullRowSelect = true;
             this.lvDetails.HideSelection = false;
-            this.lvDetails.Location = new System.Drawing.Point(6, 6);
+            this.lvDetails.Location = new System.Drawing.Point(7, 6);
             this.lvDetails.Name = "lvDetails";
-            this.lvDetails.Size = new System.Drawing.Size(666, 202);
+            this.lvDetails.Size = new System.Drawing.Size(611, 202);
             this.lvDetails.TabIndex = 0;
             this.lvDetails.UseCompatibleStateImageBehavior = false;
             this.lvDetails.View = System.Windows.Forms.View.Details;
@@ -239,17 +239,17 @@ namespace project_prg282.PresentationLayer
             // StudentNumber
             // 
             this.StudentNumber.Text = "ID";
-            this.StudentNumber.Width = 30;
+            this.StudentNumber.Width = 90;
             // 
             // Namefg
             // 
             this.Namefg.Text = "sName";
-            this.Namefg.Width = 70;
+            this.Namefg.Width = 90;
             // 
             // Surname
             // 
             this.Surname.Text = "Surname";
-            this.Surname.Width = 70;
+            this.Surname.Width = 90;
             // 
             // DOB
             // 
@@ -259,6 +259,7 @@ namespace project_prg282.PresentationLayer
             // Gender
             // 
             this.Gender.Text = "Gender";
+            this.Gender.Width = 90;
             // 
             // Phone
             // 
@@ -268,7 +269,7 @@ namespace project_prg282.PresentationLayer
             // Address
             // 
             this.Address.Text = "Address";
-            this.Address.Width = 70;
+            this.Address.Width = 90;
             // 
             // pnlInput
             // 
@@ -580,7 +581,7 @@ namespace project_prg282.PresentationLayer
             this.btnExitApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExitApp.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExitApp.ForeColor = System.Drawing.Color.White;
-            this.btnExitApp.Location = new System.Drawing.Point(843, 0);
+            this.btnExitApp.Location = new System.Drawing.Point(803, 0);
             this.btnExitApp.Margin = new System.Windows.Forms.Padding(0);
             this.btnExitApp.Name = "btnExitApp";
             this.btnExitApp.Size = new System.Drawing.Size(32, 30);
@@ -598,7 +599,7 @@ namespace project_prg282.PresentationLayer
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(884, 480);
+            this.ClientSize = new System.Drawing.Size(833, 480);
             this.Controls.Add(this.btnExitApp);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

@@ -73,7 +73,7 @@ namespace project_prg282.DataAccessLayer
         //READ - Search for a specific student
         public DataTable getStudents(string ID)
         {
-            string Search = $"Select * from Student s LEFT JOIN StudentModule sm ON s.StudentNumber = sm.StudentNumber WHERE s.StudentNumber = '{ID}'";
+            string Search = $"Select DISTINCT s.StudentNumber, s.[Name], s.Surname, s.DOB, s.Gender, s.Phone, s.Address FROM Student s LEFT JOIN StudentModule ON s.StudentNumber = StudentModule.StudentNumber WHERE s.StudentNumber = '{ID}'";
 
             SqlDataAdapter Adap = new SqlDataAdapter(Search, DatabaseCon);
 
