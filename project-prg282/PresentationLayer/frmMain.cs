@@ -135,6 +135,8 @@ namespace project_prg282.PresentationLayer
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
                 string address = rtbAddress.Text;
 
+
+
                 byte[] photo_array = null;
                 if (pbProfile.Image != null)
                 {
@@ -147,6 +149,7 @@ namespace project_prg282.PresentationLayer
                     }
                 }
                 dh.UpdateStudent(id, name, surname, photo_array, dob, gender, phone, address, modules);
+                addToListView();
 
             }
             catch (FormatException)

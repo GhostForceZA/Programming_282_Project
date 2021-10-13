@@ -104,32 +104,53 @@ namespace project_prg282.DataAccessLayer
         public void UpdateStudent(string id, string Name, string Surn, byte[] photoArr, DateTime DOB, string Gender, string Phone, string Address, string[] modules)
         {
             DatabaseCon.Open();
-            // we need to add the student to the student table and then respectively add each module in the studentModule join table
+            //deconstruct query for conveniece and to make it simpler
             string whereClause = $"WHERE StudentNumber = '{id}'";
 
-            string InsertQry = $"UPDATE Student SET StudentNumber = '{id}', [Name] = '{Name}', Surname = '{Surn}', StudentImage = '{photoArr}', DOB = '{DOB}', Gender = '{Gender}', Phone = '{Phone}', [Address] = '{Address}' {whereClause}";
-            MessageBox.Show(InsertQry);
-            SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
+            //check if student exists
+            string selectQry = $"SELECT s.StudentNumber, s.[Name], s.Surname, s.DOB, s.Gender, s.Phone, s.Address FROM Student s LEFT JOIN StudentModule ON s.StudentNumber = StudentModule.StudentNumber WHERE s.StudentNumber = '{id}'";
+            SqlCommand selectCommand = new SqlCommand(selectQry, DatabaseCon);
+            if(selectCommand.ExecuteNonQuery() == 0)
+            {
+                MessageBox.Show("user does not exist yet, you can only updatea user that already exists");
+                return;
+            }
+
+
+            //Summary: update information in student table but delete student data from studentModule joining table because of possible ghost reads and stores and
+            //because the update will overwrite all rows of student number
+            // insert new student module infomration and then the update is complete.
+            
+            
+
+            //step 1: normally update the student Info in the student table
+            string updateQry = $"UPDATE Student SET StudentNumber = '{id}', [Name] = '{Name}', Surname = '{Surn}', StudentImage = '{photoArr}', DOB = '{DOB}', Gender = '{Gender}', Phone = '{Phone}', [Address] = '{Address}' {whereClause}";
+            SqlCommand Com = new SqlCommand(updateQry, DatabaseCon);
             Com.ExecuteNonQuery();
 
-            string values = "";
 
+            //step 2: Delete student data from joinig table
+            string deleteQry = $"DELETE FROM StudentModule {whereClause}";
+            SqlCommand deleteCommand = new SqlCommand(deleteQry, DatabaseCon);
+            deleteCommand.ExecuteNonQuery();
+            //step 3: insert the student's repsective modules in the studentModule table          
+            string values = "";
+            //here we generate the last bit the the query first to include all the value at once in correct format
             for (int i = 0; i < modules.Length; i++)
             {
-                values += $"('{id}','{modules[i]}')";
+                values += $"('{id}','{modules[i].Trim()}')";
                 if (i < modules.Length - 1)
                 {
+                    //syntax check.
                     values += ",";
                 }
-
             }
-            //loop though modules and add each module code beside student number, this links it
-          
-            string InsertQry2 = $"UPDATE StudentModule SET StudentNumber = '{id}', ModuleCode = {whereClause}";
-            SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
-            Com2.ExecuteNonQuery();
+            //execute insert
+            string InsertQry = $"INSERT INTO StudentModule(StudentNumber,ModuleCode) VALUES {values}";
+            SqlCommand insertCommand = new SqlCommand(InsertQry, DatabaseCon);
+            insertCommand.ExecuteNonQuery();
 
-
+            //update complete
             DatabaseCon.Close();
         }
 
