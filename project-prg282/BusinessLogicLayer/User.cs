@@ -86,8 +86,10 @@ namespace project_prg282.BusinessLogicLayer
             return found;
         }
 
-        public bool addUser(string Username, string password)
+        public bool addUser(string username, string password)
         {
+            this.Username = username;
+            this.Password = password;
             bool success = true;
             try
             {
@@ -102,8 +104,9 @@ namespace project_prg282.BusinessLogicLayer
                     return success;
                 }
             }
-            catch
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 return !success;
             }
         }

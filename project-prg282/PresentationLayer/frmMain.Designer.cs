@@ -39,8 +39,16 @@ namespace project_prg282.PresentationLayer
             this.BtnRegister = new System.Windows.Forms.Button();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lvDetails = new System.Windows.Forms.ListView();
+            this.StudentNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Namefg = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Surname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DOB = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Gender = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Phone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlInput = new System.Windows.Forms.Panel();
             this.cbGender = new System.Windows.Forms.ComboBox();
             this.dtDOB = new System.Windows.Forms.DateTimePicker();
@@ -185,6 +193,7 @@ namespace project_prg282.PresentationLayer
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.btnReset);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.pnlInput);
             this.panel3.Controls.Add(this.panel4);
@@ -192,8 +201,24 @@ namespace project_prg282.PresentationLayer
             this.panel3.Location = new System.Drawing.Point(191, 30);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(609, 450);
+            this.panel3.Size = new System.Drawing.Size(633, 450);
             this.panel3.TabIndex = 2;
+            // 
+            // btnReset
+            // 
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(510, 192);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(0);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(119, 32);
+            this.btnReset.TabIndex = 20;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // panel6
             // 
@@ -202,23 +227,66 @@ namespace project_prg282.PresentationLayer
             this.panel6.Location = new System.Drawing.Point(12, 233);
             this.panel6.Margin = new System.Windows.Forms.Padding(0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(588, 208);
+            this.panel6.Size = new System.Drawing.Size(614, 208);
             this.panel6.TabIndex = 3;
             // 
             // lvDetails
             // 
             this.lvDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.lvDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvDetails.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.StudentNumber,
+            this.Namefg,
+            this.Surname,
+            this.DOB,
+            this.Gender,
+            this.Phone,
+            this.Address});
+            this.lvDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvDetails.ForeColor = System.Drawing.Color.White;
             this.lvDetails.FullRowSelect = true;
             this.lvDetails.HideSelection = false;
-            this.lvDetails.Location = new System.Drawing.Point(3, 3);
+            this.lvDetails.Location = new System.Drawing.Point(7, 6);
             this.lvDetails.Name = "lvDetails";
-            this.lvDetails.Size = new System.Drawing.Size(582, 202);
+            this.lvDetails.Size = new System.Drawing.Size(604, 202);
             this.lvDetails.TabIndex = 0;
             this.lvDetails.UseCompatibleStateImageBehavior = false;
             this.lvDetails.View = System.Windows.Forms.View.Details;
             this.lvDetails.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lvDetails_MouseClick);
+            // 
+            // StudentNumber
+            // 
+            this.StudentNumber.Text = "ID";
+            // 
+            // Namefg
+            // 
+            this.Namefg.Text = "sName";
+            this.Namefg.Width = 90;
+            // 
+            // Surname
+            // 
+            this.Surname.Text = "Surname";
+            this.Surname.Width = 90;
+            // 
+            // DOB
+            // 
+            this.DOB.Text = "Date Of Birth";
+            this.DOB.Width = 90;
+            // 
+            // Gender
+            // 
+            this.Gender.Text = "Gender";
+            this.Gender.Width = 70;
+            // 
+            // Phone
+            // 
+            this.Phone.Text = "Phone Number";
+            this.Phone.Width = 90;
+            // 
+            // Address
+            // 
+            this.Address.Text = "Address";
+            this.Address.Width = 90;
             // 
             // pnlInput
             // 
@@ -240,7 +308,7 @@ namespace project_prg282.PresentationLayer
             this.pnlInput.Controls.Add(this.label5);
             this.pnlInput.Controls.Add(this.label4);
             this.pnlInput.Controls.Add(this.label3);
-            this.pnlInput.Location = new System.Drawing.Point(12, 9);
+            this.pnlInput.Location = new System.Drawing.Point(41, 9);
             this.pnlInput.Margin = new System.Windows.Forms.Padding(0);
             this.pnlInput.Name = "pnlInput";
             this.pnlInput.Size = new System.Drawing.Size(469, 215);
@@ -341,10 +409,10 @@ namespace project_prg282.PresentationLayer
             this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSurname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSurname.ForeColor = System.Drawing.Color.White;
-            this.txtSurname.Location = new System.Drawing.Point(191, 23);
+            this.txtSurname.Location = new System.Drawing.Point(181, 23);
             this.txtSurname.Margin = new System.Windows.Forms.Padding(0);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(100, 20);
+            this.txtSurname.Size = new System.Drawing.Size(121, 20);
             this.txtSurname.TabIndex = 12;
             // 
             // txtName
@@ -434,7 +502,7 @@ namespace project_prg282.PresentationLayer
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(45, 46);
+            this.label5.Location = new System.Drawing.Point(40, 46);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 20);
             this.label5.TabIndex = 4;
@@ -456,7 +524,7 @@ namespace project_prg282.PresentationLayer
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(54, 2);
+            this.label3.Location = new System.Drawing.Point(45, 1);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 20);
             this.label3.TabIndex = 2;
@@ -469,7 +537,7 @@ namespace project_prg282.PresentationLayer
             this.panel4.Controls.Add(this.btnUpload);
             this.panel4.Controls.Add(this.txtID);
             this.panel4.Controls.Add(this.label2);
-            this.panel4.Location = new System.Drawing.Point(481, 9);
+            this.panel4.Location = new System.Drawing.Point(510, 9);
             this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(119, 169);
@@ -530,7 +598,7 @@ namespace project_prg282.PresentationLayer
             this.btnExitApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExitApp.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExitApp.ForeColor = System.Drawing.Color.White;
-            this.btnExitApp.Location = new System.Drawing.Point(768, 0);
+            this.btnExitApp.Location = new System.Drawing.Point(803, 0);
             this.btnExitApp.Margin = new System.Windows.Forms.Padding(0);
             this.btnExitApp.Name = "btnExitApp";
             this.btnExitApp.Size = new System.Drawing.Size(32, 30);
@@ -548,13 +616,14 @@ namespace project_prg282.PresentationLayer
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.ClientSize = new System.Drawing.Size(800, 480);
+            this.ClientSize = new System.Drawing.Size(833, 480);
             this.Controls.Add(this.btnExitApp);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Home";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FrmMain_MouseDown);
@@ -612,5 +681,13 @@ namespace project_prg282.PresentationLayer
         private System.Windows.Forms.Button btnClearModule;
         private System.Windows.Forms.DateTimePicker dtDOB;
         private System.Windows.Forms.ComboBox cbGender;
+        private System.Windows.Forms.ColumnHeader StudentNumber;
+        private System.Windows.Forms.ColumnHeader Namefg;
+        private System.Windows.Forms.ColumnHeader Surname;
+        private System.Windows.Forms.ColumnHeader DOB;
+        private System.Windows.Forms.ColumnHeader Gender;
+        private System.Windows.Forms.ColumnHeader Phone;
+        private System.Windows.Forms.ColumnHeader Address;
+        private System.Windows.Forms.Button btnReset;
     }
 }

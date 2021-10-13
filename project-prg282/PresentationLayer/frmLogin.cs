@@ -25,8 +25,6 @@ namespace project_prg282
             InitializeComponent();
             Instance = this;
         }
-
-
         //Mouse movement code taken from https://www.youtube.com/watch?v=KTTkDhuPV_c&ab_channel=TeckDoctor
         private void FormLogin_MouseMove(object sender, MouseEventArgs e)
         {
@@ -48,13 +46,6 @@ namespace project_prg282
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            //validate input, then push to business logic, returns true or false
-            //if true close and open next one
-
-           
-
-            
-
             try
             {
                 string username = txtUsername.Text;
@@ -85,7 +76,7 @@ namespace project_prg282
                 }
 
             }
-            catch(InputException err)//create custom exceptions for this
+            catch(InputException err)
             {
                 MessageBox.Show(err.Message, "Invalid Entry", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
@@ -104,7 +95,4 @@ namespace project_prg282
             this.Hide();
         }
     }
-
-
-
 }

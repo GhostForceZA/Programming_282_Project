@@ -48,8 +48,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogicLayer\iDefineUser.cs" />
-    <Compile Include="BusinessLogicLayer\Person.cs" />
-    <Compile Include="BusinessLogicLayer\Student.cs" />
     <Compile Include="BusinessLogicLayer\User.cs" />
     <Compile Include="DataAccessLayer\DataHandler.cs" />
     <Compile Include="DataAccessLayer\FileHandler.cs" />
