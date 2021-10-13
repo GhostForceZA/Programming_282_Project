@@ -3,7 +3,7 @@
 ## Team consisting of:
 
 - Adam Kaminski
-- Gustav Du Plessis
+- Gustav Du Plessis (GhostForce)
 - Francois Greeff
 - Jarod Kolbe
 
