@@ -268,22 +268,20 @@ namespace project_prg282.PresentationLayer
         }
 
         private void addToListView()
-        {
-
-            // getUsers()--Return a dataTable
-            //need to ensure column names are correct
+        { 
+      
             lvDetails.Items.Clear();
             foreach (DataRow row in dh.getAllStudents().Rows)
             {
                 ListViewItem item = new ListViewItem(row["StudentNumber"].ToString());
                 item.SubItems.Add(row["Name"].ToString());
                 item.SubItems.Add(row["Surname"].ToString());
-                //temp = (byte[])row["StudentImage"];
+          
                 item.SubItems.Add(row["DOB"].ToString());
                 item.SubItems.Add(row["Gender"].ToString());
                 item.SubItems.Add(row["Phone"].ToString());
                 item.SubItems.Add(row["Address"].ToString());
-                //item.SubItems.Add(row["ModuleCode"].ToString());
+           
                 lvDetails.Items.Add(item);
             }
         }

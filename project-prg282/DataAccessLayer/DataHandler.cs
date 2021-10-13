@@ -110,9 +110,10 @@ namespace project_prg282.DataAccessLayer
             //check if student exists
             string selectQry = $"SELECT s.StudentNumber, s.[Name], s.Surname, s.DOB, s.Gender, s.Phone, s.Address FROM Student s LEFT JOIN StudentModule ON s.StudentNumber = StudentModule.StudentNumber WHERE s.StudentNumber = '{id}'";
             SqlCommand selectCommand = new SqlCommand(selectQry, DatabaseCon);
-            if(selectCommand.ExecuteNonQuery() == 0)
+
+            if(selectCommand.ExecuteNonQuery() == -1)
             {
-                MessageBox.Show("user does not exist yet, you can only updatea user that already exists");
+                MessageBox.Show("user does not exist yet, you can only update a user that already exists");
                 return;
             }
 
