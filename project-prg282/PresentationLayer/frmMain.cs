@@ -20,6 +20,7 @@ namespace project_prg282.PresentationLayer
         List<string> modules = new List<string>();
         DataHandler dh = new DataHandler();
         byte[] temp;
+        string historyMods;
         private static readonly ImageConverter _imageConverter = new ImageConverter();
 
 
@@ -43,6 +44,27 @@ namespace project_prg282.PresentationLayer
             modules.Add("MAT251");
             modules.Add("PRG252");
             modules.Sort();
+        }
+        public bool validateInputs()
+        {
+            bool validated = true;
+            if (txtName.Text == string.Empty || txtSurname.Text == string.Empty || txtID.Text == string.Empty || txtPhone.Text == string.Empty)
+            {
+                return !validated;
+            }
+            if (cbGender.SelectedIndex == -1)
+            {
+                return !validated;
+            }
+            if (rtbAddress.Text == string.Empty)
+            {
+                return !validated;
+            }
+           
+
+            return validated;
+
+
         }
 
         private void btnExitApp_Click(object sender, EventArgs e)
@@ -90,20 +112,27 @@ namespace project_prg282.PresentationLayer
         private void btnAddMod_Click(object sender, EventArgs e)
         {
             try
-            {            
-                string selected = cbModules.SelectedItem.ToString();
-                int index = cbModules.SelectedIndex;
-                if (rtbModules.Text == "")
+            {
+                if (cbModules.SelectedIndex != -1)
                 {
-                    rtbModules.AppendText(selected);
+                    string selected = cbModules.SelectedItem.ToString();
+                    int index = cbModules.SelectedIndex;
+                    if (rtbModules.Text == "")
+                    {
+                        rtbModules.AppendText(selected);
+                    }
+                    else
+                    {
+                        rtbModules.AppendText(" " + selected.Trim());
+                    }
+                    cbModules.Items.RemoveAt(index);//getting rid of chosen module
                 }
                 else
                 {
-                    rtbModules.AppendText(", " + selected);
+                    throw new Exception();
                 }
-                cbModules.Items.RemoveAt(index);//getting rid of chosen module
             }
-            catch(Exception)
+            catch
             {
                 MessageBox.Show("Choose a module", "Module error!", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
@@ -119,92 +148,125 @@ namespace project_prg282.PresentationLayer
             }
             
         }
-
+        
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
             //get all inputs
-            try
+            if (validateInputs())
             {
-                lvDetails.Items.Clear();
-                string id = txtID.Text;
-                string name = txtName.Text;
-                string surname = txtSurname.Text;               
-                DateTime dob = dtDOB.Value;               
-                string gender = cbGender.SelectedItem.ToString();
-                string phone = txtPhone.Text;
-                string[] modules = rtbModules.Text.Split(','); //array of modules to add
-                string address = rtbAddress.Text;
 
-
-
-                byte[] photo_array = null;
-                if (pbProfile.Image != null)
+                try
                 {
-                    using (MemoryStream ms = new MemoryStream())
+                    bool updatedModules = false;
+                    lvDetails.Items.Clear();
+                    string id = txtID.Text;
+                    string name = txtName.Text;
+                    string surname = txtSurname.Text;
+                    DateTime dob = dtDOB.Value;
+                    string gender = cbGender.SelectedItem.ToString();
+                    string phone = txtPhone.Text;
+                    string[] modules = { };
+                    if (historyMods != rtbModules.Text)
                     {
-                        pbProfile.Image.Save(ms, ImageFormat.Png);
-                        photo_array = new byte[ms.Length];
-                        ms.Position = 0;
-                        ms.Read(photo_array, 0, photo_array.Length);
+                        modules = rtbModules.Text.Split(' '); //array of modules to add
+                        updatedModules = true;
+                    }
+                    string address = rtbAddress.Text;
+
+
+
+                    byte[] photo_array = null;
+                    if (pbProfile.Image != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            pbProfile.Image.Save(ms, ImageFormat.Png);
+                            photo_array = new byte[ms.Length];
+                            ms.Position = 0;
+                            ms.Read(photo_array, 0, photo_array.Length);
+                        }
+                    }
+
+
+                    bool success = dh.UpdateStudent(id, name, surname, photo_array, dob, gender[0].ToString(), phone, address, modules, updatedModules);
+
+
+
+                    if (success)
+                    {
+                        addToListView();
+                        MessageBox.Show("Successfully updated", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                dh.UpdateStudent(id, name, surname, photo_array, dob, gender, phone, address, modules);
-                addToListView();
-                MessageBox.Show("Successfully updated", "Success", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-
+                catch (FormatException)
+                {
+                    MessageBox.Show("Only valid characters to be entered");
+                }
             }
-            catch (FormatException)
+            else
             {
-                MessageBox.Show("Only valid characters to be entered");
+                MessageBox.Show("Enter all values", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void BtnRegister_Click(object sender, EventArgs e)
         {
-            try
+            if (validateInputs())
             {
-                lvDetails.Items.Clear();
-                string id = txtID.Text;
-                string name = txtName.Text;
-                string surname = txtSurname.Text;
-                DateTime dob = dtDOB.Value;
-                string address = rtbAddress.Text;
-                string phone = txtPhone.Text;
-                string gender = cbGender.SelectedItem.ToString();
-                string[] modules = rtbModules.Text.Split(','); //array of modules to add
-                //MessageBox.Show(modules[0].ToString());
-                if (modules[0]=="")
+                try
                 {
-                    modules[0] = "DF101";
-                }
-                byte[] photo_array=null;
-                if(pbProfile.Image != null)
-                {
-                    using (MemoryStream ms = new MemoryStream())
+                    lvDetails.Items.Clear();
+                    string id = txtID.Text;
+                    string name = txtName.Text;
+                    string surname = txtSurname.Text;
+                    DateTime dob = dtDOB.Value;
+                    string address = rtbAddress.Text;
+                    string phone = txtPhone.Text;
+                    string gender = cbGender.SelectedItem.ToString();
+                    string[] modules = rtbModules.Text.Split(' '); //array of modules to add
+                                                                   //MessageBox.Show(modules[0].ToString());
+                    if (modules[0] == "")
                     {
-                        pbProfile.Image.Save(ms, ImageFormat.Png);
-                        photo_array = new byte[ms.Length];
-                        ms.Position = 0;
-                        ms.Read(photo_array, 0, photo_array.Length);
+                        modules[0] = "DF101";
                     }
-                }
-                dh.addStudent(id, name, surname, photo_array, dob, gender[0].ToString(), phone, address, modules);
-                addToListView();
-                MessageBox.Show("Successfully registered", "Success", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    byte[] photo_array = null;
+                    if (pbProfile.Image != null)
+                    {
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            pbProfile.Image.Save(ms, ImageFormat.Png);
+                            photo_array = new byte[ms.Length];
+                            ms.Position = 0;
+                            ms.Read(photo_array, 0, photo_array.Length);
+                        }
+                    }
 
+                    if (dh.addStudent(id, name, surname, photo_array, dob, gender[0].ToString(), phone, address, modules))
+                    {
+                        addToListView();
+                        MessageBox.Show("Successfully registered", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+
+                }
+                catch (FormatException)
+                {
+                    MessageBox.Show("Only valid characters to be entered");
+                }
+                catch (InputException er)
+                {
+                    MessageBox.Show(er.Message);
+                }
+                catch (Exception er)
+                {
+                    MessageBox.Show(er.Message);
+                }
             }
-            catch (FormatException)
+            else
             {
-                MessageBox.Show("Only valid characters to be entered");
-            }
-            catch(InputException er)
-            {
-                MessageBox.Show(er.Message);
-            }
-            catch(Exception er)
-            {
-                MessageBox.Show(er.Message);
+                MessageBox.Show("Enter all values", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -213,9 +275,12 @@ namespace project_prg282.PresentationLayer
             try
             {
                 string id = txtID.Text;
-                dh.DeleteStudent(id);
-                addToListView();
-                MessageBox.Show("Successfully Deleted", "Success", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+
+                if (dh.DeleteStudent(id))
+                {
+                    addToListView();
+                    MessageBox.Show("Successfully Deleted", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (FormatException)
             {
@@ -321,6 +386,7 @@ namespace project_prg282.PresentationLayer
             {
                 rtbModules.AppendText(module[0].ToString()+" ");
             }
+            historyMods = rtbModules.Text;
             //rtbModules.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
 
         }
@@ -346,6 +412,7 @@ namespace project_prg282.PresentationLayer
             cbModules.SelectedIndex = -1;
             rtbAddress.Clear();
             rtbModules.Clear();
+            pbProfile.Image = null;
             addToListView();
         }
     }
