@@ -19,7 +19,6 @@ namespace project_prg282.PresentationLayer
         Point lastPoint;
         List<string> modules = new List<string>();
         DataHandler dh = new DataHandler();
-        byte[] temp;
         string historyMods;
         private static readonly ImageConverter _imageConverter = new ImageConverter();
 
@@ -60,11 +59,7 @@ namespace project_prg282.PresentationLayer
             {
                 return !validated;
             }
-           
-
             return validated;
-
-
         }
 
         private void btnExitApp_Click(object sender, EventArgs e)
@@ -75,15 +70,17 @@ namespace project_prg282.PresentationLayer
         {
             //filter string from https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.filedialog.filter?view=windowsdesktop-5.0
             openFileDialogImage.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
+            
             dtDOB.MaxDate = DateTime.Now;
+
+            //adding modules
             foreach (string mod in modules)
             {
                 cbModules.Items.Add(mod);
             }
             addToListView();
-            
         }
-        //create movable app
+        //create movable panel
         private void FrmMain_MouseDown(object sender, MouseEventArgs e)
         {
             lastPoint = new Point(e.X, e.Y);
@@ -99,13 +96,12 @@ namespace project_prg282.PresentationLayer
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            //got found from https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=windowsdesktop-5.0
+            //got code from https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.openfiledialog?view=windowsdesktop-5.0
             if (openFileDialogImage.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialogImage.FileName; //image for the user to upload
                 Bitmap img = new Bitmap(filePath);
                 pbProfile.Image = img;                
-                //take file path and process in business logic so we dont use a ton of memory using image data when parsing
             }
         }
 
@@ -225,7 +221,7 @@ namespace project_prg282.PresentationLayer
                     string phone = txtPhone.Text;
                     string gender = cbGender.SelectedItem.ToString();
                     string[] modules = rtbModules.Text.Split(' '); //array of modules to add
-                                                                   //MessageBox.Show(modules[0].ToString());
+
                     if (modules[0] == "")
                     {
                         modules[0] = "DF101";
@@ -296,9 +292,8 @@ namespace project_prg282.PresentationLayer
         {
             try
             {
-            
                 string id = txtID.Text;
-                //searchUser(id); --return the persons data, either as a person object or a formattable string
+
                 //assign to textboxes
                 DataRowCollection data = dh.getStudents(id).Rows;
 
@@ -338,14 +333,12 @@ namespace project_prg282.PresentationLayer
 
         private void addToListView()
         { 
-      
             lvDetails.Items.Clear();
             foreach (DataRow row in dh.getAllStudents().Rows)
             {
                 ListViewItem item = new ListViewItem(row["StudentNumber"].ToString());
                 item.SubItems.Add(row["Name"].ToString());
                 item.SubItems.Add(row["Surname"].ToString());
-          
                 item.SubItems.Add(row["DOB"].ToString());
                 item.SubItems.Add(row["Gender"].ToString());
                 item.SubItems.Add(row["Phone"].ToString());
@@ -359,10 +352,9 @@ namespace project_prg282.PresentationLayer
         {
             txtID.Text = lvDetails.SelectedItems[0].SubItems[0].Text;
             txtName.Text = lvDetails.SelectedItems[0].SubItems[1].Text;
-            txtSurname.Text = lvDetails.SelectedItems[0].SubItems[2].Text;
-            //byte[] temp = Encoding.ASCII.GetBytes(lvDetails.SelectedItems[0].SubItems[3].Text);//convert to an image
-            //pbProfile.Image=conv(temp);            
+            txtSurname.Text = lvDetails.SelectedItems[0].SubItems[2].Text;          
             dtDOB.Text = lvDetails.SelectedItems[0].SubItems[3].Text; //Year/Month/Day
+            
             //setting gender
             switch (lvDetails.SelectedItems[0].SubItems[4].Text)
             {
@@ -387,20 +379,7 @@ namespace project_prg282.PresentationLayer
                 rtbModules.AppendText(module[0].ToString()+" ");
             }
             historyMods = rtbModules.Text;
-            //rtbModules.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
-
         }
-        private Image conv(byte[] byteArray)
-        {
-            Image returnImage;
-            using (var ms = new MemoryStream(byteArray))
-            {
-                ms.Position = 0;
-                returnImage = new Bitmap(ms);
-            }
-            return returnImage;
-        }
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             txtID.Clear();

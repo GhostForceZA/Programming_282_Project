@@ -40,11 +40,10 @@ namespace project_prg282.DataAccessLayer
 
             if (reader.HasRows)
             {
-                MessageBox.Show("this student already exists, try updateing");
+                MessageBox.Show("this student already exists, try updating");
                 DatabaseCon.Close();
                 reader.Close();
                 return false;
-
             }
             else
             {
@@ -69,27 +68,10 @@ namespace project_prg282.DataAccessLayer
                 Com2.ExecuteNonQuery();
 
             }
-
+            DatabaseCon.Close();
             return true;
 
-            DatabaseCon.Close();
-        }
-
-        //CREATE - Adding a new student to the database, but with a stored procedure
-        public void addStudentPROC(string Name, string Surn, DateTime DOB, string Gender, string Phone, string Address)
-        {
-            SqlCommand cmd = new SqlCommand("spInsertStudent", DatabaseCon);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue("@Id", Name);
-            cmd.Parameters.AddWithValue("@Id", Surn);
-            cmd.Parameters.AddWithValue("@Id", DOB);
-            cmd.Parameters.AddWithValue("@Id", Gender);
-            cmd.Parameters.AddWithValue("@Id", Phone);
-            cmd.Parameters.AddWithValue("@Id", Address);
-
-            DatabaseCon.Open();
-            cmd.ExecuteNonQuery();
+            
         }
 
         //READ - Search for a specific student
@@ -108,8 +90,7 @@ namespace project_prg282.DataAccessLayer
         //READ - Search for a specific student, but with a stored procedure
         public DataTable getStudentPROC(string ID)
         {
-            SqlCommand cmd = new SqlCommand("SearchStudent", DatabaseCon);
-            cmd.CommandType = CommandType.StoredProcedure;
+            SqlCommand cmd = new SqlCommand("SearchStudent", DatabaseCon) { CommandType = CommandType.StoredProcedure};
             cmd.Parameters.AddWithValue("@Id", ID);
 
             DatabaseCon.Open();
@@ -148,10 +129,11 @@ namespace project_prg282.DataAccessLayer
             {
                 reader.Close();
 
-
-                //Summary: update information in student table but delete student data from studentModule joining table because of possible ghost reads and stores and
-                //because the update will overwrite all rows of student number
-                // insert new student module infomration and then the update is complete.           
+                /*
+                 * Summary: update information in student table but delete student data from studentModule joining table because of possible ghost reads and stores and
+                 * because the update will overwrite all rows of student number
+                 * insert new student module infomration and then the update is complete.  
+                 */
 
 
                 //step 1: normally update the student Info in the student table
@@ -161,7 +143,7 @@ namespace project_prg282.DataAccessLayer
 
                 if (modulesUpdated)
                 {
-                    //step 2: Delete student data from joinig table
+                    //step 2: Delete student data from joining table
                     string deleteQry = $"DELETE FROM StudentModule {whereClause}";
                     SqlCommand deleteCommand = new SqlCommand(deleteQry, DatabaseCon);
                     deleteCommand.ExecuteNonQuery();
@@ -184,44 +166,30 @@ namespace project_prg282.DataAccessLayer
                     string InsertQry = $"INSERT INTO StudentModule(StudentNumber,ModuleCode) VALUES {values}";
                     SqlCommand insertCommand = new SqlCommand(InsertQry, DatabaseCon);
                     insertCommand.ExecuteNonQuery();
-
                     //update complete
-                   
                 }
                 DatabaseCon.Close();
                 return true;
-
             }
-      
         }
-
-       
-
         //DELETE - Delete a student from the database
         public bool DeleteStudent(string ID)
         {
             DatabaseCon.Open();
-
-
             //check if student exists
             string selectQry = $"SELECT s.StudentNumber, s.[Name], s.Surname, s.DOB, s.Gender, s.Phone, s.Address FROM Student s LEFT JOIN StudentModule ON s.StudentNumber = StudentModule.StudentNumber WHERE s.StudentNumber = '{ID}'";
             SqlCommand selectCommand = new SqlCommand(selectQry, DatabaseCon);
-
             SqlDataReader reader = selectCommand.ExecuteReader();
-
-
             if (!reader.HasRows)
             {
                 MessageBox.Show("User does not exist");
                 DatabaseCon.Close();
                 reader.Close();
                 return false;
-
             }
             else
             {
                 reader.Close();
-
 
                 string DeleteQryStep1 = $"DELETE FROM StudentModule WHERE StudentNumber = '{ID}'";
                 string DeleteQryStep2 = $"DELETE FROM Student WHERE StudentNumber = '{ID}'";

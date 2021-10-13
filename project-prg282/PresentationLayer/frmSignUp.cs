@@ -48,7 +48,6 @@ namespace project_prg282.PresentationLayer
                 TxtUname.Clear();
             }
         }
-
         private void TxtUname_Leave(object sender, EventArgs e)
         {
             if (TxtUname.Text.Trim().Length == 0)
@@ -91,16 +90,15 @@ namespace project_prg282.PresentationLayer
                 Regex rePass = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
                 if (username == "Username" || password == "Password")
                 {
-                    //throw custom exception (Please enter values different from placeholder)
                     //checks if the user supplied a user name and password
                     throw new InputException("Please enter Username and Password");
                    
                 }
                 else if (!re.IsMatch(username) || !rePass.IsMatch(password))
                 {
-                    //throw custom exception (Invalid characters used)
-                    throw new InputException("user name or password contains invalid characters\nPassword requires at least: 1 uppercase, 1 lowercase, 1 number, 1 special character\nLonger than 8 characters\n username should be a minimum of 4 characters");
-                  
+                    throw new InputException("Username or password contains invalid characters\nPassword requires at " +
+                        "least: 1 uppercase, 1 lowercase, 1 number, 1 special character\nLonger than 8 characters\nusername " +
+                        "should be a minimum of 4 characters");
                 }
                 else
                 {

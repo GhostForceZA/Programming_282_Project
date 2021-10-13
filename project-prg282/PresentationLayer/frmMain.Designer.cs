@@ -39,6 +39,7 @@ namespace project_prg282.PresentationLayer
             this.BtnRegister = new System.Windows.Forms.Button();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lvDetails = new System.Windows.Forms.ListView();
             this.StudentNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -73,7 +74,6 @@ namespace project_prg282.PresentationLayer
             this.label2 = new System.Windows.Forms.Label();
             this.btnExitApp = new System.Windows.Forms.Button();
             this.openFileDialogImage = new System.Windows.Forms.OpenFileDialog();
-            this.btnReset = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -203,6 +203,22 @@ namespace project_prg282.PresentationLayer
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(633, 450);
             this.panel3.TabIndex = 2;
+            // 
+            // btnReset
+            // 
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(510, 192);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(0);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(119, 32);
+            this.btnReset.TabIndex = 20;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // panel6
             // 
@@ -393,10 +409,10 @@ namespace project_prg282.PresentationLayer
             this.txtSurname.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSurname.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSurname.ForeColor = System.Drawing.Color.White;
-            this.txtSurname.Location = new System.Drawing.Point(191, 23);
+            this.txtSurname.Location = new System.Drawing.Point(181, 23);
             this.txtSurname.Margin = new System.Windows.Forms.Padding(0);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(100, 20);
+            this.txtSurname.Size = new System.Drawing.Size(121, 20);
             this.txtSurname.TabIndex = 12;
             // 
             // txtName
@@ -486,7 +502,7 @@ namespace project_prg282.PresentationLayer
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(45, 46);
+            this.label5.Location = new System.Drawing.Point(40, 46);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 20);
             this.label5.TabIndex = 4;
@@ -508,7 +524,7 @@ namespace project_prg282.PresentationLayer
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(54, 2);
+            this.label3.Location = new System.Drawing.Point(45, 1);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 20);
             this.label3.TabIndex = 2;
@@ -594,22 +610,6 @@ namespace project_prg282.PresentationLayer
             // openFileDialogImage
             // 
             this.openFileDialogImage.FileName = "openFileDialog1";
-            // 
-            // btnReset
-            // 
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Location = new System.Drawing.Point(510, 192);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(0);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(119, 32);
-            this.btnReset.TabIndex = 20;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // FrmMain
             // 

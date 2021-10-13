@@ -70,12 +70,12 @@ namespace project_prg282.PresentationLayer
             // 
             this.TxtUname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.TxtUname.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtUname.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtUname.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtUname.ForeColor = System.Drawing.Color.White;
             this.TxtUname.Location = new System.Drawing.Point(16, 9);
             this.TxtUname.Margin = new System.Windows.Forms.Padding(0);
             this.TxtUname.Name = "TxtUname";
-            this.TxtUname.Size = new System.Drawing.Size(284, 22);
+            this.TxtUname.Size = new System.Drawing.Size(284, 24);
             this.TxtUname.TabIndex = 0;
             this.TxtUname.Text = "Username";
             this.TxtUname.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TxtUname_MouseClick);
@@ -95,12 +95,12 @@ namespace project_prg282.PresentationLayer
             // 
             this.TxtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtPassword.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtPassword.ForeColor = System.Drawing.Color.White;
             this.TxtPassword.Location = new System.Drawing.Point(16, 9);
             this.TxtPassword.Margin = new System.Windows.Forms.Padding(0);
             this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Size = new System.Drawing.Size(284, 22);
+            this.TxtPassword.Size = new System.Drawing.Size(284, 24);
             this.TxtPassword.TabIndex = 0;
             this.TxtPassword.Text = "Password";
             this.TxtPassword.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TxtPassword_MouseClick);
