@@ -150,6 +150,7 @@ namespace project_prg282.PresentationLayer
                 }
                 dh.UpdateStudent(id, name, surname, photo_array, dob, gender, phone, address, modules);
                 addToListView();
+                MessageBox.Show("Successfully updated", "Success", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
 
             }
             catch (FormatException)
@@ -190,6 +191,8 @@ namespace project_prg282.PresentationLayer
                 }
                 dh.addStudent(id, name, surname, photo_array, dob, gender[0].ToString(), phone, address, modules);
                 addToListView();
+                MessageBox.Show("Successfully registered", "Success", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+
             }
             catch (FormatException)
             {
@@ -212,6 +215,7 @@ namespace project_prg282.PresentationLayer
                 string id = txtID.Text;
                 dh.DeleteStudent(id);
                 addToListView();
+                MessageBox.Show("Successfully Deleted", "Success", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             }
             catch (FormatException)
             {

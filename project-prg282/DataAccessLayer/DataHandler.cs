@@ -120,8 +120,7 @@ namespace project_prg282.DataAccessLayer
 
             //Summary: update information in student table but delete student data from studentModule joining table because of possible ghost reads and stores and
             //because the update will overwrite all rows of student number
-            // insert new student module infomration and then the update is complete.
-            
+            // insert new student module infomration and then the update is complete.           
             
 
             //step 1: normally update the student Info in the student table
