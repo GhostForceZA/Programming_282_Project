@@ -164,7 +164,12 @@ namespace project_prg282.PresentationLayer
                 string phone = txtPhone.Text;
                 string gender = cbGender.SelectedItem.ToString();
                 string[] modules = rtbModules.Text.Split(','); //array of modules to add
-
+                string stuff = "";
+                foreach (string item in modules)
+                {
+                    stuff += item;
+                }
+                MessageBox.Show(stuff);
 
                 MemoryStream ms = new MemoryStream();
                 pbProfile.Image.Save(ms, ImageFormat.Png);
@@ -256,7 +261,7 @@ namespace project_prg282.PresentationLayer
                 ListViewItem item = new ListViewItem(row["StudentNumber"].ToString());
                 item.SubItems.Add(row["Name"].ToString());
                 item.SubItems.Add(row["Surname"].ToString());
-                temp = (byte[])row["StudentImage"];
+                //temp = (byte[])row["StudentImage"];
                 item.SubItems.Add(row["DOB"].ToString());
                 item.SubItems.Add(row["Gender"].ToString());
                 item.SubItems.Add(row["Phone"].ToString());
@@ -275,8 +280,8 @@ namespace project_prg282.PresentationLayer
             //pbProfile.Image=conv(temp);            
             dtDOB.Text = lvDetails.SelectedItems[0].SubItems[3].Text; //Year/Month/Day
             cbGender.Text = lvDetails.SelectedItems[0].SubItems[4].Text;
-            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
-            txtPhone.Text = lvDetails.SelectedItems[0].SubItems[6].Text;
+            txtPhone.Text = lvDetails.SelectedItems[0].SubItems[5].Text;
+            rtbAddress.Text = lvDetails.SelectedItems[0].SubItems[6].Text;     
             rtbModules.Text = lvDetails.SelectedItems[0].SubItems[7].Text;
             
         }

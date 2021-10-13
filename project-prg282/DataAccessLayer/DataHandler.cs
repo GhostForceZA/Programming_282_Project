@@ -20,7 +20,7 @@ namespace project_prg282.DataAccessLayer
 
         public DataTable getAllStudents()
         {
-            string query = "SELECT * FROM Student INNER JOIN StudentModule ON Student.StudentNumber = StudentModule.StudentNumber";
+            string query = "SELECT * FROM Student LEFT JOIN StudentModule ON Student.StudentNumber = StudentModule.StudentNumber";
             SqlDataAdapter adapter = new SqlDataAdapter(query, DatabaseCon);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
@@ -34,14 +34,21 @@ namespace project_prg282.DataAccessLayer
             string InsertQry = $"INSERT INTO Student(StudentNumber, Name, Surname, StudentImage, DOB, Gender, Phone, Address) VALUES ('{id}','{Name}','{Surn}', '{photoArr}', '{DOB}','{Gender}','{Phone}','{Address}')";
             SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
             Com.ExecuteNonQuery();
+            string values = "";
 
             for (int i = 0; i < modules.Length; i++)
             {
-                string InsertQry2 = $"INSERT INTO StudentModule(StudentNumber,ModuleCode) VALUES ('{id}','{modules[i]}')";
-                SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
-                Com2.ExecuteNonQuery();
+                values += $"('{id}','{modules[i]}')";
+                if (i < modules.Length-1)
+                {
+                    values += ",";
+                }
+
             }
-   
+            string InsertQry2 = $"INSERT INTO StudentModule(StudentNumber,ModuleCode) VALUES {values}";
+            SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
+            Com2.ExecuteNonQuery();
+
 
             DatabaseCon.Close();
         }
@@ -66,7 +73,7 @@ namespace project_prg282.DataAccessLayer
         //READ - Search for a specific student
         public DataTable getStudents(string ID)
         {
-            string Search = $"Select * from Student s INNER JOIN StudentModule sm ON s.StudentNumber = sm.StudentNumber WHERE s.StudentNumber = '{ID}'";
+            string Search = $"Select * from Student s LEFT JOIN StudentModule sm ON s.StudentNumber = sm.StudentNumber WHERE s.StudentNumber = '{ID}'";
 
             SqlDataAdapter Adap = new SqlDataAdapter(Search, DatabaseCon);
 
@@ -105,14 +112,24 @@ namespace project_prg282.DataAccessLayer
             SqlCommand Com = new SqlCommand(InsertQry, DatabaseCon);
             Com.ExecuteNonQuery();
 
-            //loop though modules and add each module code beside student number, this links it
+            string values = "";
+
             for (int i = 0; i < modules.Length; i++)
             {
-                string InsertQry2 = $"UPDATE StudentModule SET StudentNumber = '{id}', ModuleCode = '{modules[i]}' {whereClause}";
-                SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
-                Com2.ExecuteNonQuery();
+                values += $"('{id}','{modules[i]}')";
+                if (i < modules.Length - 1)
+                {
+                    values += ",";
+                }
+
             }
-       
+            //loop though modules and add each module code beside student number, this links it
+          
+            string InsertQry2 = $"UPDATE StudentModule SET StudentNumber = '{id}', ModuleCode = {whereClause}";
+            SqlCommand Com2 = new SqlCommand(InsertQry2, DatabaseCon);
+            Com2.ExecuteNonQuery();
+
+
             DatabaseCon.Close();
         }
 
